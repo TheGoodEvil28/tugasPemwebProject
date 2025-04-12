@@ -1,0 +1,230 @@
+/* General Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-actions a img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+/* Main Content */
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+
+/* Leaderboard Tabs */
+
+.leaderboard-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.leaderboard-tabs button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.leaderboard-tabs button.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.leaderboard-tabs button:hover {
+    background-color: #555;
+}
+
+
+/* Leaderboard Table */
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border-left: 1px solid #ddd;
+    /* Garis vertikal di kiri tabel */
+    border-right: 1px solid #ddd;
+    /* Garis vertikal di kanan tabel */
+    border-bottom: 1px solid #ddd;
+    /* Garis vertikal di bawah tabel */
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    /* Garis horizontal */
+}
+
+.leaderboard-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}
+
+.leaderboard-table td {
+    background-color: #fff;
+}
+
+
+/* Menghapus garis vertikal antar kolom */
+
+.leaderboard-table th:first-child,
+.leaderboard-table td:first-child {
+    border-left: none;
+}
+
+.leaderboard-table th:last-child,
+.leaderboard-table td:last-child {
+    border-right: none;
+}
+
+
+/* Mengembalikan garis di bagian bawah tabel */
+
+.leaderboard-table tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* Icon Medals */
+
+.icon-medal {
+    font-size: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Mobile Responsive Adjustments */
+
+@media (max-width: 768px) {
+    main {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .leaderboard-tabs {
+        gap: 5px;
+    }
+    .leaderboard-tabs button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+    .icon-medal {
+        font-size: 18px;
+    }
+}
+
+
+/* Further adjustments for very small screens */
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 24px;
+    }
+    .leaderboard-tabs {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .leaderboard-tabs button {
+        width: 100%;
+        text-align: left;
+    }
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+    .icon-medal {
+        font-size: 16px;
+    }
+}
+
+.leaderboard-table img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+
+/* Profile Cell Styling */
+
+.profile-cell {
+    display: flex;
+    align-items: center;
+    /* Vertically centers the content */
+    gap: 10px;
+    /* Adds space between image and text */
+}
+
+.profile-img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    /* Ensures image maintains aspect ratio */
+    border-radius: 50%;
+    /* Optional: If you want circular profile images */
+}
+
+
+/* Ensures all columns have uniform spacing */
+
+.leaderboard-table td {
+    vertical-align: middle;
+    /* Ensures vertical alignment within the table */
+    padding: 10px;
+}

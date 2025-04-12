@@ -1,0 +1,149 @@
+/* General Body Styles */
+body {
+    background-color: #F6F6F6;
+}
+
+/* Full White Background for Address Section */
+.address-section {
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0;
+    border-radius: 5px;
+    height: 100%;
+}
+
+/* Ensure order-section adjusts dynamically */
+.order-section .row {
+    height: auto; /* Allows height to adjust based on content */
+}
+
+.order-section .col-md-6 {
+    height: auto; /* Ensures columns adapt to content size */
+}
+
+/* Removing Margin and Padding to Fill Right Side */
+.order-section {
+    margin-left: 40px;
+    padding: 0;
+}
+
+.order-summary {
+    background-color: #F6F6F6;
+}
+
+.order-summary .card {
+    background-color: #F6F6F6;
+    border: none;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.purchase-guarantee {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Tablet View Adjustments */
+@media (max-width: 992px) {
+    .order-section {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .order-summary,
+    .address-section {
+        padding: 20px;
+        box-shadow: none;
+        margin-top: 20px;
+    }
+
+    .order-summary .card {
+        padding: 15px;
+    }
+
+    .order-summary .card img {
+        width: 100px; /* Slightly reduce image size */
+    }
+
+    .order-summary .card h5 {
+        font-size: 20px;
+    }
+
+    .purchase-guarantee {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .order-summary,
+    .address-section {
+        padding: 18px;
+        box-shadow: none;
+        margin-top: 15px;
+    }
+
+    .order-summary .card,
+    .address-section {
+        padding: 15px;
+    }
+
+    .order-summary .card img {
+        width: 80px;
+    }
+
+    .order-summary .card h5 {
+        font-size: 18px;
+    }
+
+    .order-summary .d-flex {
+        flex-direction: column;
+    }
+
+    .purchase-guarantee {
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .order-section .row {
+        margin: 0;
+    }
+}
+
+/* Mobile-Specific Adjustments for Screens Below 576px */
+@media (max-width: 576px) {
+    .order-summary,
+    .address-section {
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .order-summary .card img {
+        width: 60px;
+    }
+
+    .order-summary .card h5 {
+        font-size: 16px;
+    }
+
+    .order-summary .d-flex {
+        flex-direction: column;
+    }
+
+    .btn-dark {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .purchase-guarantee {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}

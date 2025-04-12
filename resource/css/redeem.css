@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.redeem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.redeem-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.points-display {
+    font-size: 18px;
+    color: #7f8c8d;
+    display: flex;
+    align-items: center;
+}
+
+.points-display img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+
+/* Responsive Grid for Redeem Cards */
+
+.redeem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+
+/* Redeem Card Styling */
+
+.redeem-card {
+    background: linear-gradient(to bottom, #F44242 0%, #2377CC 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    color: white;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.redeem-card img {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.redeem-card h2 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+    /* Align text to the right of the image */
+}
+
+.redeem-card p {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 50px;
+    /* Center the content in the card */
+}
+
+.btn-container {
+    position: relative;
+    bottom: -20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-redeem {
+    background-color: white;
+    color: #070808;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.btn-redeem:hover {
+    background-color: #2377CC;
+}
+
+
+/* Mobile-Friendly Adjustments */
+
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+    .redeem-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .redeem-grid {
+        grid-template-columns: 1fr;
+    }
+    .btn-redeem {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .redeem-header h1 {
+        font-size: 18px;
+    }
+    .points-display {
+        font-size: 14px;
+    }
+    .redeem-card img {
+        width: 40px;
+        height: 40px;
+    }
+}

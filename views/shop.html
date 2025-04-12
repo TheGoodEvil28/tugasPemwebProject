@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thriftin - Toko Thrift</title>
+    <link rel="icon" type="image/x-icon" href="../resource/images/logoT.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../resource/css/shop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../resource/css/nav.css">
+    <link rel="stylesheet" href="../resource/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/heroicons@1.0.1/dist/solid.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet"></head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container d-flex justify-content-between align-items-center top-bar">
+    
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="../index.html">
+      <img src="../resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
+    </a>
+
+    <!-- Hamburger Menu (Mobile View) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.html">
+            <span class="mobile-text">HOME</span>
+            <i class="fas fa-chevron-right mobile-arrow"></i> 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mobile-menu-item {{ request()->is('shopwomen') ? 'active' : '' }}" href="../views/shop.html">
+            <span class="mobile-text">SHOP</span>
+            <i class="fas fa-chevron-right mobile-arrow"></i> 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mobile-menu-item {{ request()->is('sell') ? 'active' : '' }}" href="../views/sell.html">
+            <span class="mobile-text">SELL</span>
+            <i class="fas fa-chevron-right mobile-arrow"></i> 
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- User Icons (Right Side on Desktop, Top with Logo on Mobile) -->
+    <div class="user-icons d-flex align-items-center">
+      <a class="nav-link" href="#"><img src="../resource/images/Icon_Gambar/Semua_Icon/notification.png" alt="Notification Icon" style="width: 24px; height: 24px;"></a>
+      <a class="nav-link" href="#"><img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" alt="Love Icon" style="width: 24px; height: 24px;"></a>
+      <a class="nav-link" href="#"><img src="../resource/images/Icon_Gambar/Semua_Icon/gift.png" alt="Gift Icon" style="width: 24px; height: 24px;"></a>
+      <a class="nav-link" href="#"><img src="../resource/images/Icon_Gambar/Semua_Icon/shopping bag.png" alt="Shopping Bag Icon" style="width: 24px; height: 24px;"></a>
+      <a class="nav-link profile-link position-relative" href="#" id="profileIcon">
+        <img src="../resource/images/Icon_Gambar/Semua_Icon/profile.png" alt="Profile Icon" style="width: 24px; height: 24px;">
+      </a>
+    </div>
+
+  </div>
+</nav>
+<!-- Shop Section -->
+<section class="shop-section container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Tabs (Women, Men, Kid) -->
+        <ul class="nav nav-tabs" id="categoryTabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="shop.html" data-category="women">Women</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="shopmen.html" data-category="men">Men</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="shopkid.html" data-category="kid">Kid</a>
+            </li>
+        </ul>
+
+        <!-- Search Bar -->
+        <div class="input-group search-wrapper">
+            <input type="text" class="form-control search-bar" placeholder="Search for items" id="search-input">
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filters-section d-flex">
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="categoryFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                Category
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoryFilter">
+                <li><a class="dropdown-item" href="#" data-category="">Women</a></li>
+                <li><a class="dropdown-item" href="#" data-category="tops">Tops</a></li>
+                <li><a class="dropdown-item" href="#" data-category="bottoms">Bottom</a></li>
+                <li><a class="dropdown-item" href="#" data-category="outerwear">Outerwear</a></li>
+                <li><a class="dropdown-item" href="#" data-category="dresses">Dresses</a></li>
+                <li><a class="dropdown-item" href="#" data-category="footwear">Footwear</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="sizeFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                Size
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sizeFilter">
+                <li><a class="dropdown-item" href="#" data-size="">Size</a></li>
+                <li><a class="dropdown-item" href="#" data-size="s">S</a></li>
+                <li><a class="dropdown-item" href="#" data-size="m">M</a></li>
+                <li><a class="dropdown-item" href="#" data-size="l">L</a></li>
+                <li><a class="dropdown-item" href="#" data-size="xl">XL</a></li>
+                <li><a class="dropdown-item" href="#" data-size="onesize">Shoe Size</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="priceFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                Price
+            </button>
+            <ul class="dropdown-menu p-3">
+                <input type="number" id="minPrice" class="form-control" placeholder="Rp Min">
+                <span> - </span>
+                <input type="number" id="maxPrice" class="form-control" placeholder="Rp Max">
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-dark" id="filterPriceBtn">Done</button>
+                    <button class="btn btn-secondary" id="resetPriceBtn">Reset</button>
+                </div>
+            </ul>
+        </div>
+
+        <div class="dropdown sort-dropdown">
+            <button class="btn dropdown-toggle d-flex align-items-center justify-content-between" type="button" id="sortFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sortFilter">
+                <li><a class="dropdown-item" data-sort="low" href="#">Low to High</a></li>
+                <li><a class="dropdown-item" data-sort="high" href="#">High to Low</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="row g-4" id="product-grid">
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="tops" data-size="l" data-price="240000">
+            <div class="card">
+                <a href="shop2.html">
+                    <img src="../resource/images\Barang_Branded\Female\Top_s\Prada Morocain wo girl.avif" 
+                    data-hover-src="../resource/images\Barang_Branded\Female\Top_s\Prada Morocain.avif"
+                    class="card-img-top hover-image" alt="Product Image">
+                </a>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size L</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <a href="shop2.html" class="product-link">
+                        <h5 class="product-name">Prada Marocain top</h5>
+                    </a>
+                    <p class="product-price">Rp 240.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="tops" data-size="l" data-price="210000">
+            <div class="card">
+            <img src="../resource/images\Barang_Branded\Female\Top_s\blue shirt prada.avif" 
+                    data-hover-src="../resource/images\Barang_Branded\Female\Top_s\blue shirt prada woman.avif"
+                    class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size L</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Prada Blue Shirt</h5>
+                    <p class="product-price">Rp 210.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="tops" data-size="m" data-price="200000">
+            <div class="card">
+                <img src="../resource/images/Barang_Branded/Female/Top_s/oversized cotton shirt.avif"
+                 data-hover-src="../resource/images/Barang_Branded/Female/Top_s/oversized cotton shirt girl.avif"
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size M</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Prada Oversized Cotton Shirt</h5>
+                    <p class="product-price">Rp 200.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="tops" data-size="s" data-price="120000">
+            <div class="card">
+                <img src="../resource/images\Barang_Branded\Female\Top_s\dark brown knitwear.avif" 
+                data-hover-src="../resource/images/Barang_Branded/Female/Top_s/dark brown knitwear woman.avif"
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size S</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Prada Dark Brown Knitwear</h5>
+                    <p class="product-price">Rp 120.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="bottoms" data-size="xl" data-price="300000">
+            <div class="card">
+                <img src="../resource/images\Barang_Branded\Female\Bottom_s\technical grey pants.avif"
+                data-hover-src="../resource/images\Barang_Branded\Female\Bottom_s\technical grey pants woman.avif"
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size XL</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Prada Technical Grey Pants</h5>
+                    <p class="product-price">Rp 3000.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="bottoms" data-size="m" data-price="305000">
+            <div class="card">
+            <img src="../resource/images\Barang_Branded\Female\Bottom_s\sable trousers.png"
+            data-hover-src="../resource/images\Barang_Branded\Female\Bottom_s\sable trousers woman.png"
+            class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body hover-image">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size M</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Sable Trousers</h5>
+                    <p class="product-price">Rp 305.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="bottoms" data-size="bottoms" data-price="285000">
+            <div class="card">
+            <img src="../resource/images\Barang_Branded\Female\Bottom_s\rush stitch skirt with leather fringe.avif"
+            data-hover-src="../resource/images\Barang_Branded\Female\Bottom_s\rush stitch skirt with leather fringe woman.avif"
+            class="card-img-top hover-image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size M</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Rush Stitch Skirt with Leather Fringe</h5>
+                    <p class="product-price">Rp 285.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="bottoms" data-size="xl" data-price="285000">
+            <div class="card">
+                <img src="../resource/images\Barang_Branded\Female\Bottom_s\emboridered silk and wool skirt.avif"
+                data-hover-src="../resource/images\Barang_Branded\Female\Bottom_s\emboridered silk and wool skirt woman.avif"
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size XL</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Embroidered Silk and Wool Skirt</h5>
+                    <p class="product-price">Rp 285.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="footwear" data-size="onesize" data-price="245000">
+            <div class="card">
+                <img src="../resource/images\Barang_Branded\Female\Shoes\chuck 70 lunar new year two.png" 
+                data-hover-src="../resource/images\Barang_Branded\Female\Shoes\chuck 70 lunar new year.png"
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size 38</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Converse Chuck 70 Lunar New Year</h5>
+                    <p class="product-price">Rp 245.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="footwear" data-size="onesize" data-price="305000">
+            <div class="card">
+                <img src="../resource/images\Barang_Branded\Female\Shoes\chuck taylor all star move petals and pearls high top two.png" 
+                data-hover-src="../resource/images\Barang_Branded\Female\Shoes\chuck taylor all star move petals and pearls high top.png" 
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size 36</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Converse Chuck Taylor All Star Move Petals and Pearls High Top</h5>
+                    <p class="product-price">Rp 305.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="footwear" data-size="onesize" data-price="125000">
+            <div class="card">
+                <img src="../resource/images\Barang_Branded\Female\Shoes\chuck 8- de luxe heel sandal two.png" 
+                data-hover-src="../resource/images\Barang_Branded\Female\Shoes\chuck 8- de luxe heel sandal.png"
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size 41</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Converse Chuck 8-Deluxe Heel Sandal</h5>
+                    <p class="product-price">Rp 125.000</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 product-card" data-category="footwear" data-size="onesize" data-price="220000">
+            <div class="card">
+            <img src="../resource/images\Barang_Branded\Female\Shoes\chcuk taylor all star lugged heel mary jane two.png" 
+                data-hover-src="../resource/images\Barang_Branded\Female\Shoes\chcuk taylor all star lugged heel mary jane.png" 
+                class="card-img-top hover-image" alt="Product Image">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="product-size">Size 38</p>
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
+                    </div>
+                    <h5 class="product-name">Converse Chuck Taylor All Star Lugged Heel Mary Jane</h5>
+                    <p class="product-price">Rp 220.000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Centered Load More Link -->
+    <div class="more-link text-center mt-5">
+        <a href="#">More <img src="../resource/images\Icon_Gambar\Semua_Icon\arrow_down.png" alt="More Icon" style="width: 16px; height: 16px;"></a>
+    </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('profileIcon').addEventListener('click', function(event) {
+        event.preventDefault();
+        var dropdown = document.getElementById('profileDropdown');
+        dropdown.classList.toggle('d-none');
+    });
+
+    // Close the dropdown when clicking outside of it
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById('profileDropdown');
+        var profileIcon = document.getElementById('profileIcon');
+        if (!profileIcon.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.classList.add('d-none');
+        }
+    });
+
+// Variables for filtering
+const categoryItems = document.querySelectorAll('.dropdown-item[data-category]');
+const sizeItems = document.querySelectorAll('.dropdown-item[data-size]');
+const searchInput = document.getElementById('search-input');
+const minPriceInput = document.getElementById('minPrice');
+const maxPriceInput = document.getElementById('maxPrice');
+const productGrid = document.getElementById('product-grid');
+
+// Filtering products based on criteria
+function filterProducts() {
+    const selectedCategory = document.querySelector('.dropdown-item.active[data-category]')?.dataset.category || '';
+    const selectedSize = document.querySelector('.dropdown-item.active[data-size]')?.dataset.size || '';
+    const searchQuery = searchInput.value.toLowerCase();
+
+    document.querySelectorAll('.product-card').forEach(product => {
+        const productCategory = product.dataset.category;
+        const productSize = product.dataset.size;
+        const productPrice = parseInt(product.dataset.price);
+        const productName = product.querySelector('.product-name').innerText.toLowerCase();
+
+        const matchesCategory = !selectedCategory || productCategory === selectedCategory;
+        const matchesSize = !selectedSize || productSize === selectedSize;
+        const matchesSearch = productName.includes(searchQuery);
+        const matchesPrice = (minPriceInput.value === '' || productPrice >= parseInt(minPriceInput.value)) &&
+                             (maxPriceInput.value === '' || productPrice <= parseInt(maxPriceInput.value));
+
+        if (matchesCategory && matchesSize && matchesSearch && matchesPrice) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+// Event listeners for filters
+categoryItems.forEach(item => {
+    item.addEventListener('click', function (event) {
+        event.preventDefault();
+        categoryItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        filterProducts();
+    });
+});
+
+sizeItems.forEach(item => {
+    item.addEventListener('click', function (event) {
+        event.preventDefault();
+        sizeItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        filterProducts();
+    });
+});
+
+// Event listener for search functionality
+searchInput.addEventListener('input', filterProducts);
+
+// Event listener for price filtering
+document.getElementById('filterPriceBtn').addEventListener('click', filterProducts);
+document.getElementById('resetPriceBtn').addEventListener('click', function () {
+    minPriceInput.value = '';
+    maxPriceInput.value = '';
+    filterProducts();
+});
+document.querySelectorAll('.hover-image').forEach(img => {
+  const originalSrc = img.src;
+  const hoverSrc = img.dataset.hoverSrc;
+
+  img.addEventListener('mouseenter', () => {
+    // Set timeout for 1 second (1000ms)
+    hoverTimeout = setTimeout(() => {
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = hoverSrc;
+        img.style.opacity = '1';
+      }, 150); // This 150ms is for the fade effect
+    }, 350);
+  });
+
+  img.addEventListener('mouseleave', () => {
+    // Clear the timeout if mouse leaves before 1 second
+    clearTimeout(hoverTimeout);
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = originalSrc;
+      img.style.opacity = '1';
+    }, 150);
+  });
+});
+</script>
+<footer class="footer py-4" style="background-color: #0B2442; color: #F7F7F6;">
+  <div class="container">
+    <div class="row">
+      <!-- Contact Us -->
+      <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+        <h5 class="footer-title">Contact Us</h5>
+        <ul class="list-unstyled">
+          <li>
+            <i class="bi bi-envelope-fill me-2"></i>
+            <a href="mailto:thriftinNext24@gmail.com" class="footer-link">thriftinindo@gmail.com</a>
+          </li>
+          <li>
+            <i class="bi bi-instagram me-2"></i>
+            <a href="https://instagram.com/thriftinNext24" class="footer-link">@Thriftin._</a>
+          </li>
+          <li>
+            <i class="bi bi-facebook me-2"></i>
+            <a href="https://facebook.com/thriftinNext24" class="footer-link">ThriftinIndo</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+        <h5 class="footer-title">Categories</h5>
+        <ul class="list-unstyled">
+          <li><a href="../views/shop.html" class="footer-link">Women's Fashion</a></li>
+          <li><a href="../views/shopmen.html" class="footer-link">Men's Fashion</a></li>
+          <li><a href="../views/shopkid.html" class="footer-link">Kid's Fashion</a></li>
+        </ul>
+      </div>
+
+      <!-- Help -->
+      <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+        <h5 class="footer-title">Help</h5>
+        <ul class="list-unstyled">
+          <li><a href="/contactus" class="footer-link">Contact Us</a></li>
+          <li><a href="#" class="footer-link">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Offline Store -->
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <h5 class="footer-title">Offline Store</h5>
+        <p class="footer-text">
+          <i class="bi bi-geo-alt-fill me-2"></i>Pasir Kaliki, Cicendo, Kota Bandung, Jawa Barat, Indonesia
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bar text-center py-2" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+    <p class="mb-0 footer-text">© 2024 Thriftin Company. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

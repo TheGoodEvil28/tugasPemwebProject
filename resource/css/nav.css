@@ -1,0 +1,341 @@
+/* General Navbar Styles */
+
+.navbar {
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adds shadow for better visibility */
+    z-index: 999;
+    /* Ensure the navbar is always on top */
+    height: 80px;
+    /* Define the height of the navbar */
+    background-color: white;
+    /* Set navbar background color */
+}
+
+
+/* Logo Image Styling */
+
+.logo-image {
+    height: 50px;
+    /* Adjust logo height */
+    width: auto;
+    /* Maintain aspect ratio */
+}
+
+
+/* Navbar Items Styling */
+
+.navbar-nav .nav-link {
+    font-weight: bold;
+    font-size: 18px;
+    /* Adjust font size */
+    text-transform: uppercase;
+    margin-right: 20px;
+    /* Spacing between items */
+    position: relative;
+    color: #0B2442;
+    /* Default color for links */
+    transition: color 0.3s ease;
+}
+
+
+/* Hover and Active Effects for Navbar Items */
+
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #4B5E7E;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+    /* Full underline on hover */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #333;
+    /* Darker color on hover */
+}
+
+.navbar-nav .nav-link.active::after {
+    width: 100%;
+    /* Full underline when active */
+    background-color: #4B5E7E;
+}
+
+.nav-link i {
+    color: #000;
+    /* Default icon color */
+    margin-left: 15px;
+    /* Space between icons */
+}
+
+
+/* Navbar Toggler Styling */
+
+.navbar-toggler {
+    border-color: transparent;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%23000' viewBox='0 0 24 24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='3' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='18' x2='21' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    /* Customized SVG for toggler */
+}
+
+
+/* Icon Hover Effects */
+
+.d-flex.align-items-center .nav-link i {
+    transition: color 0.3s ease;
+}
+
+.d-flex.align-items-center .nav-link:hover i {
+    color: #4B5E7E;
+    /* Icon color change on hover */
+}
+
+
+/* Sticky Navbar */
+
+.fixed-top {
+    top: 0;
+    z-index: 1020;
+    width: 100%;
+}
+
+
+/* Responsive Adjustments for Mobile */
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    .navbar-toggler {
+        margin-right: 10px;
+    }
+    .nav-item {
+        margin-bottom: 10px;
+    }
+    .navbar-nav .nav-link {
+        font-size: 14px;
+        /* Reduce font size for mobile */
+        margin-right: 10px;
+    }
+    .logo-image {
+        height: 40px;
+        /* Reduce logo size for mobile */
+    }
+    .navbar {
+        height: auto;
+    }
+    /* Add more padding for mobile if navbar height changes */
+    body {
+        margin-top: 100px;
+    }
+}
+
+
+/* Adjust icon section */
+
+.d-flex.align-items-center .nav-link {
+    margin-right: 15px;
+}
+
+.d-flex.align-items-center .nav-link i {
+    transition: color 0.3s ease;
+}
+
+
+/* Add padding to prevent page content from being hidden behind the navbar */
+
+body {
+    margin-top: 80px;
+    /* Adjust this value to fit the navbar's height */
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-top: 150px;
+        /* Add more space for mobile */
+    }
+}
+
+
+/* Profile Dropdown Style */
+
+.profile-dropdown {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    top: 100%;
+    right: 0;
+    padding: 10px;
+    width: 150px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.profile-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-dropdown ul li {
+    margin: 0;
+    padding: 8px 0;
+    text-align: right;
+    text-size-adjust: 20px;
+}
+
+.profile-dropdown ul li a {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    text-decoration: none;
+    padding: 8px;
+    display: block;
+}
+
+.profile-dropdown ul li a:hover {
+    background-color: #f3f6fb;
+    border-radius: 5px;
+}
+
+.profile-dropdown hr {
+    margin: 10px 0;
+    border: 0.5px solid #ddd;
+}
+
+.d-none {
+    display: none !important;
+}
+
+
+/* Dropdown Alignment */
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+
+/* General Navbar Styles */
+.navbar {
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    background-color: white;
+    height: 80px;
+}
+
+/* Logo Styling */
+.logo-image {
+    height: 50px;
+    width: auto;
+}
+
+/* User Icons Styling */
+.user-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon-img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Desktop View: Align User Icons to the Right */
+@media (min-width: 992px) {
+    .user-icons {
+        margin-left: auto; /* Push icons to the right */
+    }
+}
+
+/* Mobile View: Arrange Logo, User Icons & Hamburger Menu */
+@media (max-width: 991px) {
+    .navbar {
+        height: auto;
+    }
+
+    .d-lg-none {
+        display: flex !important;
+    }
+
+    .user-icons {
+        order: 3; /* Move icons to the right on mobile */
+    }
+
+    .navbar-toggler {
+        order: 4;
+    }
+}
+
+
+/* Desktop view - Center navigation */
+@media (min-width: 769px) {
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .mobile-menu-item {
+        display: inline-block; /* Keeps the items aligned in the center */
+        text-align: center;
+    }
+    
+    .mobile-arrow {
+        display: none !important; /* Hide arrow on desktop */
+    }
+}
+
+
+
+/* Mobile view - Align left and show hamburger */
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: block; /* Stack items vertically */
+        text-align: left;
+    }
+
+    .navbar-toggler {
+        display: block; /* Ensure the hamburger is visible */
+        border: none;
+        background: none;
+        outline: none;
+    }
+
+    .navbar-toggler-icon {
+        width: 30px;
+        height: 30px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%23000' viewBox='0 0 24 24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='3' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='18' x2='21' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    }
+
+    .mobile-menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+    }
+
+    .mobile-text {
+        flex-grow: 1; /* Keeps text aligned to the left */
+    }
+
+    .mobile-arrow {
+        font-size: 14px;
+        color: #4B5E7E;
+        display: inline-block; /* Show arrow on mobile */
+    }
+}

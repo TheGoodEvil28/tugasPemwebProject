@@ -1,0 +1,849 @@
+/* General Body Style */
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-tabs .nav-link {
+    color: black !important; /* Change to your desired color */
+}
+
+.nav-tabs .nav-link.active {
+    color: white !important; /* Change color for active tab */
+    background-color: black !important; /* Change background for active tab */
+}
+
+.nav-tabs .nav-link {
+    position: relative;
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-tabs .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    background-color: #000000;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.nav-tabs .nav-link.active::after {
+    width: 100%;
+}
+
+.nav-tabs .nav-link.active {
+    color: #000000;
+}
+
+
+/* hero section */
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-top: 40px;
+    opacity: 1;
+    position: relative; /* Change from sticky to relative */
+    z-index: 10; /* Ensure it does not overlap the carousel */
+    transform: scale(1);
+    animation: fadeInScale 2s ease-in-out forwards, naturalLeftRight 5s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+@keyframes animatedBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-section::before, .hero-section::after {
+    pointer-events: none;
+}
+
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 70%, #0b4d9e9c 90%);
+    background-size: 200% 200%;
+    animation: gradientShift 10s infinite alternate ease-in-out;
+    overflow: hidden;
+    
+}
+.hero-section::before, .hero-section::after {
+    pointer-events: none;
+}
+.sell-btn, .shop-btn {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+/* Soft accent glow */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 223, 150, 0.35) 0%, transparent 60%);
+    filter: blur(60px);
+    z-index: 0;
+    animation: glowMove 3s infinite alternate ease-in-out;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 150, 170, 0.3) 0%, transparent 60%);
+    filter: blur(60px);
+    z-index: 0;
+    animation: glowMove 4s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes glowMove {
+    0% { transform: translateY(40px) scale(1); }
+    100% { transform: translateY(100px) scale(4); }
+}
+
+
+.hero-text {
+    padding-left: 50px;
+}
+
+.hero-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 1500;
+    color: #7f8c8d;
+    line-height: 1.7;
+    margin-right: 80px;
+}
+
+/* Logo Image */
+
+.logo-image-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+/* Hero Description */
+
+.hero-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: #516061;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+
+
+/* Fade-In & Scale on Load */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(0.4);
+    }
+}
+
+/* Natural Left-Right Floating Effect */
+@keyframes naturalLeftRight {
+    0% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(1px);
+    }
+    50% {
+        transform: translateX(-2px);
+    }
+    75% {
+        transform: translateX(1px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+
+
+/* Call-to-action Buttons */
+
+.cta-buttons {
+    text-align: left;
+}
+
+.cta-buttons .btn {
+    width: 170px;
+    padding: 20px 50px;
+    /* Increase padding for larger buttons */
+    font-size: 20px;
+    /* Increase font size for larger text */
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: 5px;
+    margin-right: 20px;
+    display: inline-flex;
+    /* Ensure the button content is centered */
+    align-items: center;
+    /* Vertical centering */
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Primary Button (sell) */
+
+.sell-btn {
+    background-color: #0B2442;
+    /* Muted Coral */
+    color: white;
+    padding: 15px 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.sell-btn:hover {
+    background-color: rgb(245, 163, 163);
+    color: #0B2442;
+    /* Change text color on hover */
+    transform: translateY(-3px);
+    /* Slight button lift on hover */
+}
+
+
+/* Secondary Button (Shop) */
+
+.shop-btn {
+    background-color: #e1dfdf; /* Light gray */
+    color: #151616;
+    padding: 15px 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.shop-btn:hover {
+    background-color: #0B2442; /* Dark blue */
+    color: white;
+    transform: translateY(-3px);
+}
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    .sell-btn,
+    .shop-btn {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+/* Product Grid */
+
+.product-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    /* Ensure all images have the same height */
+    object-fit: cover;
+    /* Ensure images fill the box without distortion */
+}
+
+.product-card .card-body {
+    padding: 15px;
+}
+
+.product-size {
+    font-size: 15px;
+    color: #151616;
+}
+
+.product-card .wishlist-icon {
+    font-size: 22px;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.product-card .wishlist-icon:hover {
+    color: #4B5E7E;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Align "More" Button in the Center */
+
+.more-link {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.more-link a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #25282d;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.more-link a i {
+    margin-left: 8px;
+    font-size: 20px;
+    color: #25282d;
+}
+
+.more-link a:hover {
+    color: #72777f;
+}
+
+.more-link a:hover i {
+    color: #72777f;
+}
+
+
+
+
+
+
+
+/* Section Carousel Styling */
+
+#image-slider {
+    width: 100%;
+    /* Set width to 100% to fit the parent container */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+/* Section Carousel Styling */
+
+#image-slider {
+    width: 100%;
+    /* Make sure the carousel takes full width */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto; /* Ensures image scales properly */
+    object-fit: contain; /* Prevents cropping */
+    max-height: 450px; /* Adjust this based on your design */
+}
+
+.carousel-inner {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+}
+
+.carousel-item {
+            transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+        }
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 200px;
+        /* Adjust height for smaller screens */
+    }
+}
+
+
+/* Fullwidth Sections */
+
+.container-fluid {
+    width: 100vw;
+    /* Take full viewport width */
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* Fullwidth fix for carousel */
+
+#image-slider,
+.carousel-inner,
+.carousel-item img {
+    width: 100vw;
+    /* Take full viewport width for slider */
+    max-width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+}
+
+@media (max-width: 400px) {
+    .thriftIn-title {
+        font-size: 40px;
+    }
+    .thrift-title {
+        font-size: 16px;
+    }
+    .hero-description {
+        font-size: 12px;
+    }
+    .cta-buttons .btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+/* Section Title Strip */
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Strip Below Title */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px; /* Strip width */
+    height: 4px; /* Strip height */
+    background-color: #0B2442; /* Elegant green (change if needed) */
+    margin: 8px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Slight hover effect */
+.section-title:hover::after {
+    width: 80px; /* Expands slightly on hover */
+}
+
+
+
+
+/* Add a soft shadow to give depth */
+.about-thriftIn-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 120%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.02) 10%, rgba(0,0,0,0) 80%);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.about-thriftIn-section > div {
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}
+
+/* SDG Icons Styling */
+.sdg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 35px; /* More spacing for balance */
+}
+
+.sdg-icon-wrapper {
+    text-align: center;
+    width: 180px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sdg-icon-wrapper:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* SDG Icon - Adjust Size Dynamically */
+.sdg-icon {
+    width: min(110px, 12vw); /* Adjusts based on viewport width */
+    height: auto;
+    margin-bottom: 10px;
+    filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.1)); /* Soft depth effect */
+}
+
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* UNDP Quote Section */
+
+.undp-quote-section {
+    position: relative;
+    background: url('https://i.ibb.co.com/8nCYKgp/gambar4full.png') no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    width: 100%;
+}
+
+.undp-quote-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Gelap untuk membuat teks terlihat jelas */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* General Responsive Adjustments */
+@media (max-width: 1024px) {
+    .sdg-icon {
+        width: min(95px, 14vw); /* Slightly smaller on medium screens */
+    }
+}
+
+/* Tablet Optimization */
+@media (max-width: 992px) {
+    .thriftIn-title {
+        font-size: 60px; /* Adjusted for tablets */
+    }
+    .thrift-title {
+        font-size: 22px;
+    }
+    .hero-description {
+        font-size: 16px;
+    }
+    .cta-buttons .btn {
+        font-size: 16px;
+        padding: 10px 30px;
+    }
+    .hero-section {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .hero-image {
+        margin-top: 20px;
+        max-width: 85%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .thriftIn-title {
+        font-size: 50px; /* Adjusted for mobile */
+    }
+    .thrift-title {
+        font-size: 20px;
+    }
+    .hero-description {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .cta-buttons .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        width: 80%;
+        max-width: 250px;
+    }
+    .hero-section {
+        padding: 40px 15px;
+        text-align: center;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        max-width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px; /* Reduce margin on mobile */
+        position: relative; /* Ensure it doesn't overlap */
+    }
+}
+
+/* Small Mobile Screens */
+@media (max-width: 576px) {
+    .thriftIn-title {
+        font-size: 45px; /* Adjusted for smaller mobile screens */
+    }
+    .thrift-title {
+        font-size: 18px;
+    }
+    .hero-description {
+        font-size: 13px;
+    }
+    .cta-buttons .btn {
+        font-size: 13px;
+        padding: 8px 18px;
+    }
+    .hero-section {
+        padding: 30px 10px;
+    }
+    .hero-image {
+        margin-top: 10px;
+        max-width: 85%;
+    }
+    .sell-images-grid {
+        grid-template-columns: 1fr; /* Stack images */
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 20px 5px;
+    }
+    .thriftIn-title {
+        font-size: 40px;
+    }
+    .thrift-title {
+        font-size: 16px;
+    }
+    .hero-description {
+        font-size: 12px;
+    }
+    .cta-buttons .btn {
+        width: 90%;
+        max-width: 220px;
+    }
+    .hero-image {
+        max-width: 80%;
+    }
+}
+
+/* Grid & Spacing Adjustments */
+@media (max-width: 768px) {
+    .about-thriftIn-section {
+        padding: 50px 15px;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+    .about-text {
+        font-size: 15px;
+    }
+}
+
+/* SDG Icons Responsive */
+@media (max-width: 768px) {
+    .sdg-container {
+        gap: 20px;
+    }
+    .sdg-icon-wrapper {
+        width: 120px;
+    }
+    .sdg-icon {
+        width: min(75px, 18vw);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .hero-section {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .hero-image {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    #image-slider {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    .carousel-inner {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    .carousel {
+        margin-top: -62px !important;
+        padding-top: 0 !important;
+        margin-bottom: -62px !important;
+    }
+    
+}
+@media (max-width: 768px) {
+    .carousel-item img {
+        max-height: 250px; /* Adjust height for smaller screens */
+    }
+}
+
+/* Media query for tablets and smaller devices */
+@media (max-width: 991.98px) {
+    .hero-section .row {
+        flex-direction: column;
+    }
+
+    .hero-section .col-md-6 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-section .hero-text {
+        margin-bottom: 30px;
+    }
+
+    .hero-section .hero-image {
+        margin-top: 20px;
+    }
+
+    #image-slider {
+        margin-top: 20px;
+    }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767.98px) {
+    .hero-section .hero-text {
+        margin-bottom: 20px;
+    }
+
+    .hero-section .hero-image {
+        margin-top: 10px;
+    }
+
+    #image-slider {
+        margin-top: 10px;
+    }
+}

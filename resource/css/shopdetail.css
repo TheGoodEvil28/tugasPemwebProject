@@ -1,0 +1,194 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-tabs {
+    margin-top: 20px;
+    margin-bottom: auto;
+}
+
+.nav-tabs .nav-link {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0B2442;
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: 700;
+    color: #0B2442;
+    background-color: #fff;
+    border-bottom: 2px solid #4B5E7E;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #f8f8f8;
+    color: #0B2442;
+}
+
+.search-wrapper {
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.search-bar {
+    border-radius: 50px;
+    margin-top: 20px;
+    padding-left: 20px;
+    height: 38px;
+    font-size: 14px;
+}
+
+
+/* Breadcrumb */
+
+.breadcrumb {
+    background-color: transparent;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    color: #333;
+}
+
+
+/* Product Details */
+
+.product-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #161414;
+}
+
+
+/* Product Description */
+
+.product-description p {
+    margin-bottom: 2px;
+    line-height: 1.4;
+}
+
+.product-description h5 {
+    margin-bottom: 10px;
+}
+
+.product-description small.text-muted {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
+.product-size,
+.product-name {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Adjust the carousel image size */
+
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+
+/* Product Grid Adjustments */
+
+.product-card img {
+    height: 250px;
+    /* Adjust height to make the image smaller */
+    object-fit: cover;
+    width: 100%;
+}
+
+
+/* Related Products Section */
+
+.related-products {
+    margin-top: 40px;
+}
+
+.related-products h4 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #0B2442;
+}
+
+
+/* Wishlist Icon */
+
+.wishlist-icon {
+    font-size: 22px;
+    color: #0B2442;
+    /* Default color for the heart icon */
+    transition: color 0.3s ease;
+}
+
+.product-card:hover .wishlist-icon {
+    box-shadow: none !important;
+    transform: scale(1.2);
+    /* Tidak ada shadow saat hover */
+}
+
+/* Ensure product links do not appear as blue */
+.product-link {
+    text-decoration: none;  /* Remove underline */
+    color: #0B2442;  /* Match your theme color */
+    font-weight: 600;
+}
+
+.product-link:hover {
+    color: #4B5E7E;  /* Slight color change on hover */
+    text-decoration: none;
+}

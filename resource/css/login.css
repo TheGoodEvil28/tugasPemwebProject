@@ -1,0 +1,116 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-brand {
+    margin-left: 100px;
+    /* Anda bisa mengubah nilai sesuai dengan kebutuhan */
+}
+
+
+/* Background Image */
+
+.login-background {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Login Box */
+
+.login-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+
+/* Title */
+
+.login-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+/* Input Fields */
+
+.login-box .form-control {
+    border-radius: 10px;
+    height: 50px;
+    font-size: 16px;
+}
+
+
+/* Forgot Password */
+
+.forgot-password-link {
+    font-size: 14px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Sign In Button */
+
+.btn-dark {
+    background-color: #000000;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 15px 0;
+}
+
+.btn-dark:hover {
+    background-color: #333333;
+    opacity: 0.9;
+}
+
+.register-link {
+    color: #333;
+    /* Sesuaikan warna dengan palet warna Anda */
+    font-weight: bold;
+    /* Sesuaikan gaya sesuai kebutuhan */
+    text-decoration: none;
+    /* Menghilangkan garis bawah */
+}
+
+.register-link:hover {
+    color: #000;
+    /* Atur warna hover jika diperlukan */
+}
+
+.custom-input {
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    margin-bottom: 40px;
+    /* Add spacing between input fields */
+}
+
+.custom-input::placeholder {
+    font-size: 16px;
+    color: #999;
+}
+
+.custom-input:focus {
+    border-color: #000;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

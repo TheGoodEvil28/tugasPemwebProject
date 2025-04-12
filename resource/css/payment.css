@@ -1,0 +1,142 @@
+/* Payment Section Layout */
+.payment-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    /* Wrap items for smaller screens */
+    gap: 20px;
+}
+
+/* Payment and Order Summary */
+.payment-details,
+.order-summary {
+    width: calc(50% - 10px);
+    margin: 0;
+}
+
+.payment-details {
+    background-color: white;
+    padding: 20px;
+    box-shadow: none;
+}
+
+.order-summary {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: none;
+}
+
+/* Payment Boxes */
+.payment-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: none;
+}
+
+/* Bank Logos */
+.bank-logos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.payment-logo {
+    width: 80px;
+    height: auto;
+}
+
+/* E-Wallet & QR Payment */
+.e-wallet-box,
+.qr-payment-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.e-wallet {
+    width: 38px;
+    height: 39px;
+}
+
+.qr-payment {
+    width: 54px;
+    height: 20px;
+}
+
+/* Order Summary Section */
+.order-summary {
+    background-color: #F6F6F6;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.order-summary-card {
+    background-color: #F6F6F6;
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .payment-section {
+        flex-direction: column;
+    }
+
+    .payment-details,
+    .order-summary {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .payment-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bank-logos {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .payment-logo {
+        width: 70px;
+    }
+
+    .e-wallet,
+    .qr-payment {
+        width: 70px;
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-details h1 {
+        font-size: 24px;
+    }
+
+    .order-summary h4 {
+        font-size: 18px;
+    }
+
+    .order-summary-card {
+        padding: 15px;
+    }
+
+    .summary-details p {
+        font-size: 14px;
+    }
+
+    .total-section p {
+        font-size: 16px;
+    }
+}

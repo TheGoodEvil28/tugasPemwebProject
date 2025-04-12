@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    width: 1000px;
+    height: auto;
+    /* Adjust height automatically based on content */
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+
+/* Responsive for smaller devices */
+
+@media (max-width: 768px) {
+    main {
+        width: 90%;
+        /* Use 90% of the viewport width for mobile responsiveness */
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        width: 95%;
+        /* Use almost full width on very small devices */
+        padding: 15px;
+        /* Reduce padding further for small devices */
+    }
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* Full width */
+    margin-bottom: 40px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Keep gap between profile pic and text */
+}
+
+.profile-info img {
+    width: 120px;
+    /* Size adjustment */
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profile-info h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.profile-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-stats .xp {
+    background-color: transparent;
+    /* Removed yellow background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.profile-stats .xp img {
+    width: 25px;
+    /* Adjust icon size */
+    height: 25px;
+    margin-right: 5px;
+}
+
+.profile-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* Buttons */
+
+.profile-buttons .btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-leaderboard {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-leaderboard:hover {
+    background-color: #c0392b;
+    /* Warna lebih gelap saat hover */
+    transform: translateY(-3px);
+    /* Gerakan naik sedikit saat hover */
+}
+
+.btn-redeem {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-redeem:hover {
+    background-color: #2980b9;
+    /* Warna lebih gelap saat hover */
+    transform: translateY(-3px);
+    /* Gerakan naik sedikit saat hover */
+}
+
+.tabs {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    /* Center tabs */
+    border-bottom: 2px solid #ddd;
+}
+
+.tabs a {
+    text-decoration: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 20px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.tabs a.active {
+    border-bottom: 2px solid #3498db;
+    color: #3498db;
+}
+
+.history-list {
+    margin-top: 30px;
+    /* Increased margin for better spacing */
+    width: 100%;
+    /* Full width */
+    padding: 25px;
+    /* Increased padding */
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item img {
+    width: 70px;
+    /* Increased image size */
+    height: 70px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+}
+
+.history-item p {
+    margin: 0;
+    font-size: 18px;
+    /* Increased font size */
+}
+
+.history-item .price {
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.impact {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    main {
+        margin: 20px auto;
+        padding: 20px;
+    }
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .profile-info img {
+        width: 60px;
+        height: 60px;
+    }
+    .profile-info h2 {
+        font-size: 20px;
+    }
+    .profile-info p {
+        font-size: 12px;
+    }
+    .profile-stats {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .profile-buttons .btn {
+        width: 100%;
+    }
+    .tabs {
+        flex-direction: column;
+    }
+    .tabs a {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    .history-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .history-item img {
+        width: 40px;
+        height: 40px;
+    }
+    .history-item p {
+        font-size: 14px;
+    }
+    .history-item .price {
+        font-size: 16px;
+    }
+}
