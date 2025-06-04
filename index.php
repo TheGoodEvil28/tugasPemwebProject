@@ -6,6 +6,7 @@ $method = $_GET['m']??'index';
 
 require_once 'controller/Controller.class.php';
 require_once "controller/$controller.class.php";
+require_once __DIR__ . '/controller/Route.class.php';
 
 //run$
 $c = new $controller;

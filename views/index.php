@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,25 +19,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/heroicons@1.0.1/dist/solid.js"></script>
-
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container d-flex justify-content-between align-items-center top-bar">
-    
     <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
     </a>
-
     <!-- Hamburger Menu (Mobile View) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    
-
     <!-- Navigation Links -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
@@ -68,7 +61,7 @@
       <a class="nav-link" href="#"><img src="resource/images/Icon_Gambar/Semua_Icon/love.png" alt="Love Icon" style="width: 24px; height: 24px;"></a>
       <a class="nav-link" href="#"><img src="resource/images/Icon_Gambar/Semua_Icon/gift.png" alt="Gift Icon" style="width: 24px; height: 24px;"></a>
       <a class="nav-link" href="#"><img src="resource/images/Icon_Gambar/Semua_Icon/shopping bag.png" alt="Shopping Bag Icon" style="width: 24px; height: 24px;"></a>
-      <a class="nav-link profile-link position-relative" href="#" id="profileIcon">
+      <a class="nav-link profile-link position-relative" href="index.php?c=Route&m=profile" id="profileIcon">
         <img src="resource/images/Icon_Gambar/Semua_Icon/profile.png" alt="Profile Icon" style="width: 24px; height: 24px;">
       </a>
     </div>
@@ -88,7 +81,7 @@
                     </p>
                     <br>
                     <div class="cta-buttons mt-4">
-                        <a href="views/sell.html" class="btn sell-btn">Sell</a>
+                        <a href="index.php?c=Route&m=sell" class="btn sell-btn">Sell</a>
                         <a href="index.php?c=Route&m=shop" class="btn shop-btn">Shop</a>
                     </div>
                 </div>

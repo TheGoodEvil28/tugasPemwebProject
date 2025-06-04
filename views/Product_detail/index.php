@@ -1,43 +1,4 @@
-<?php
-session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Handle upload file dulu
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-        $target_dir = "../assets/uploads/";
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true); // Bikin folder kalau belum ada
-        }
-        $photo_name = basename($_FILES["photo"]["name"]);
-        $target_file = $target_dir . $photo_name;
-        
-        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            $photo_uploaded = $photo_name;
-        } else {
-            $photo_uploaded = '';
-        }
-    } else {
-        $photo_uploaded = '';
-    }
-
-    // Simpan semua inputan ke session
-    $_SESSION['product'] = [
-        'photo' => $photo_uploaded,
-        'description' => $_POST['description'],
-        'category' => $_POST['category'],
-        'brand' => $_POST['brand'],
-        'condition' => $_POST['condition'],
-        'color' => $_POST['color'],
-        'size' => $_POST['size'],
-        'fabric' => $_POST['fabric'],
-    ];
-} else {
-    header('Location: Sell.php');
-    exit();
-}
-
-$product = $_SESSION['product'];
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,46 +45,41 @@ $product = $_SESSION['product'];
   </div>
 </nav>
 
-<section class="container-content">
-    <div class="product-details">
-        <h3><b>Product Details</b></h3>
-        
-        <!-- Foto Produk -->
-        <div class="product-photo-grid">
-            <?php if (!empty($product['photo'])) : ?>
-                <img src="../assets/uploads/<?php echo htmlspecialchars($product['photo']); ?>" alt="Product Photo">
-            <?php else : ?>
-                <p>No photo uploaded.</p>
-            <?php endif; ?>
-        </div>
 
-        <!-- Detail Produk -->
-        <div class="item-details">
-            <table>
-                <tr><td><strong>Description</strong></td><td>: <?php echo nl2br(htmlspecialchars($product['description'])); ?></td></tr>
-                <tr><td><strong>Category</strong></td><td>: <?php echo htmlspecialchars($product['category']); ?></td></tr>
-                <tr><td><strong>Brand</strong></td><td>: <?php echo htmlspecialchars($product['brand']); ?></td></tr>
-                <tr><td><strong>Condition</strong></td><td>: <?php echo htmlspecialchars($product['condition']); ?></td></tr>
-                <tr><td><strong>Color</strong></td><td>: <?php echo htmlspecialchars($product['color']); ?></td></tr>
-                <tr><td><strong>Size</strong></td><td>: <?php echo htmlspecialchars($product['size']); ?></td></tr>
-                <tr><td><strong>Fabric</strong></td><td>: <?php echo htmlspecialchars($product['fabric']); ?></td></tr>
-            </table>
-        </div>
-    </div>
 
-    <div class="price-details">
-        <h3>Set Your Product Price</h3>
-        <form action="?c=Route&m=confirmation" method="POST">
-            <label for="price">Enter your price</label>
-            <input type="number" id="price" name="price" placeholder="Input Price" min="0" required>
+<?php if (!$product): ?>
+  <p>No product data to show!</p>
+  <?php exit; ?>
+<?php endif; ?>
 
-            <p class="total-price">Total Price: Rp 63,000</p>
-            <div class="d-grid">
-                <button type="submit"><b>Send Product</b></button>
-            </div>
-        </form>
-    </div>
-</section>
+<!-- Main Content -->
+<div class="container my-5 pt-5">
+  <h2>Product Details</h2>
+
+  <?php if (!empty($product['image_data'])): ?>
+  <img src="data:<?php echo htmlspecialchars($product['image_type']); ?>;base64,<?php echo base64_encode($product['image_data']); ?>" alt="Product Photo" style="max-width: 200px;">
+<?php else: ?>
+  <p>No photo uploaded.</p>
+<?php endif; ?>
+<p>Description: <?php echo htmlspecialchars($product['description']); ?></p>
+<p>Category: <?php echo htmlspecialchars($product['category']); ?></p>
+<p>Brand: <?php echo htmlspecialchars($product['brand']); ?></p>
+<p>Condition: <?php echo htmlspecialchars($product['condition']); ?></p>
+<p>Color: <?php echo htmlspecialchars($product['color']); ?></p>
+<p>Size: <?php echo htmlspecialchars($product['size']); ?></p>
+<p>Fabric: <?php echo htmlspecialchars($product['fabric_type'] ?? ''); ?></p>
+
+
+
+
+
+  <!-- Form to set price -->
+  <form action="index.php?c=Route&m=saveProduct" method="POST" class="mt-4">
+    <label for="price" class="form-label">Set Your Price (Rp)</label>
+    <input type="number" name="price" id="price" class="form-control mb-3" placeholder="Input Price" min="0" required>
+    <button type="submit" class="btn btn-primary">Save Product with Price</button>
+  </form>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

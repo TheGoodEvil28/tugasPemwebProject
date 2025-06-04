@@ -1,16 +1,21 @@
 <?php
 class Model {
     protected $db;
-    public $conn;
     private $host = 'localhost:3306';
     private $username = 'root';
     private $password = 'root';
     private $db_name  = 'crud_barang';
 
+    public function __construct() {
+        $this->db = $this->connect(); // ✅ Automatically set $db
+    }
+
     public function connect() {
-        $this->conn = null;
+        $conn = new PDO("mysql:host=localhost;dbname=crud_barang;charset=binary", $this->username, $this->password);
+
+        $conn = null;
         try {
-            $this->conn = new PDO(
+            $conn = new PDO(
                 "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
                 $this->username,
                 $this->password
@@ -18,6 +23,6 @@ class Model {
         } catch(PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();
         }
-        return $this->conn;
+        return $conn;
     }
 }

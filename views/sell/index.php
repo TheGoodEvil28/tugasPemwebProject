@@ -46,7 +46,8 @@
 
 <!-- Main Form Content -->
 <section class="sell-section">
-<form action="index.php?c=Route&m=productDetail" method="POST">
+<form action="index.php?c=Route&m=productDetail" method="POST" enctype="multipart/form-data">
+
     <h2>Sell Your Items</h2>
         <div class="sell-container">
             <!-- Product Section -->

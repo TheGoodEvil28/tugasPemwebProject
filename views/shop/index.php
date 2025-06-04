@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thriftin - Toko Thrift</title>
     <link rel="icon" type="image/x-icon" href="../resource/images/logoT.png">
-    <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/app.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/heroicons@1.0.1/dist/solid.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../resource/css/order.css">
     <link rel="stylesheet" href="../resource/css/shop.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resource/css/nav.css">
@@ -27,10 +20,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container d-flex justify-content-between align-items-center top-bar">
     
-    <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="../index.php">
-      <img src="../resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
-    </a>
+   <!-- Logo -->
+   <a class="navbar-brand d-flex align-items-center" href="../index.php">
+    <img src="../resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
+  </a>
+
 
     <!-- Hamburger Menu (Mobile View) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -73,88 +67,60 @@
         <img src="../resource/images/Icon_Gambar/Semua_Icon/profile.png" alt="Profile Icon" style="width: 24px; height: 24px;">
       </a>
     </div>
-
   </div>
 </nav>
-    <!-- Order Section -->
-    <section class="order-section container my-5">
-        <div class="row g-4">
-            <!-- Order Summary -->
-            <div class="col-lg-6">
-                <div class="order-summary p-4 shadow-sm bg-light rounded">
-                    <h4 class="mb-4">Order</h4>
-                    <div class="card p-3 shadow-sm">
-                        <div class="d-flex align-items-center">
-                            <img src="../resource/images/Barang_Branded/Female/Top_s/Prada Morocain wo girl.avif" 
-                                alt="Product Image" class="img-fluid rounded" style="width: 100px; height: auto; margin-right: 20px;">
-                            <div>
-                                <h5 class="mb-1">Prada Morocain</h5>
-                                <p class="text-muted mb-1">Size L - Good Condition</p>
-                                <p class="text-muted mb-0">Color: White 
-                                    <span class="circle-color d-inline-block" 
-                                        style="background-color: #587098; width: 15px; height: 15px; border-radius: 50%;">
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <p>Subtotal</p>
-                            <p>Rp 240.000</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Shipping</p>
-                            <p>In the next stage</p>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between fw-bold">
-                            <p>Total</p>
-                            <p>Rp 240.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Shop Section -->
+<section class="shop-section container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Tabs (Women, Men, Kid) -->
+        <ul class="nav nav-tabs" id="categoryTabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="shop.html" data-category="women">Women</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="shopmen.html" data-category="men">Men</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="shopkid.html" data-category="kid">Kid</a>
+            </li>
+        </ul>
+    </div>
 
-            <!-- Address Section -->
-            <div class="col-lg-6">
-                <div class="address-section p-4 bg-white shadow-sm rounded">
-                    <h4 class="mb-4">Address</h4>
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Your Phone Number">
-                        </div>
-                        <div class="mb-3">
-                            <label for="address-search" class="form-label">Find Your Address</label>
-                            <input type="text" class="form-control" id="address-search" placeholder="Example: street/building/housing">
-                        </div>
-                        <div class="mb-3">
-                            <label for="full-address" class="form-label">Full Address</label>
-                            <textarea class="form-control" id="full-address" rows="3" placeholder="Make sure the address is correct"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="additional-details" class="form-label">Other Details (Optional)</label>
-                            <input type="text" class="form-control" id="additional-details" placeholder="Example: block, unit number or landmark">
-                        </div>
-                        <a href="index.php?c=Route&m=shop3" class="btn btn-dark w-100">Proceed to Delivery</a>
-                    </form>
-                    <div class="purchase-guarantee d-flex align-items-center mt-3">
-                        <img src="../resource/images/Icon_Gambar/Semua_Icon/insurance.png" alt="Insurance Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-                        <small class="text-muted">Safe with Thriftin Purchase Guarantee</small>
-                    </div>
-                </div>
+    
+<section class="container">
+  <div class="row g-4" id="product-grid">
+    <?php foreach ($products as $product): ?>
+      <div class="col-12 col-sm-6 col-md-3 product-card">
+        <div class="card">
+<a href="index.php?c=Route&m=shop2&id=<?php echo $product['id']; ?>">
+
+
+            <img src="index.php?c=Route&m=serveImage&id=<?php echo $product['id']; ?>" class="card-img-top hover-image" alt="Product Image">
+
+          </a>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="product-size">Size <?php echo htmlspecialchars($product['size']); ?></p>
+              <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png"
+                   class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
             </div>
+            <h5 class="product-name"><?php echo htmlspecialchars($product['brand']); ?></h5>
+            <p class="product-price">Rp <?php echo number_format($product['price'], 0, ',', '.'); ?></p>
+          </div>
         </div>
-    </section>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    document.getElementById('profileIcon').addEventListener('click', function(event) {
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('profileIcon').addEventListener('click', function(event) {
         event.preventDefault();
         var dropdown = document.getElementById('profileDropdown');
         dropdown.classList.toggle('d-none');
@@ -168,6 +134,95 @@
             dropdown.classList.add('d-none');
         }
     });
+
+// Variables for filtering
+const categoryItems = document.querySelectorAll('.dropdown-item[data-category]');
+const sizeItems = document.querySelectorAll('.dropdown-item[data-size]');
+const searchInput = document.getElementById('search-input');
+const minPriceInput = document.getElementById('minPrice');
+const maxPriceInput = document.getElementById('maxPrice');
+const productGrid = document.getElementById('product-grid');
+
+// Filtering products based on criteria
+function filterProducts() {
+    const selectedCategory = document.querySelector('.dropdown-item.active[data-category]')?.dataset.category || '';
+    const selectedSize = document.querySelector('.dropdown-item.active[data-size]')?.dataset.size || '';
+    const searchQuery = searchInput.value.toLowerCase();
+
+    document.querySelectorAll('.product-card').forEach(product => {
+        const productCategory = product.dataset.category;
+        const productSize = product.dataset.size;
+        const productPrice = parseInt(product.dataset.price);
+        const productName = product.querySelector('.product-name').innerText.toLowerCase();
+
+        const matchesCategory = !selectedCategory || productCategory === selectedCategory;
+        const matchesSize = !selectedSize || productSize === selectedSize;
+        const matchesSearch = productName.includes(searchQuery);
+        const matchesPrice = (minPriceInput.value === '' || productPrice >= parseInt(minPriceInput.value)) &&
+                             (maxPriceInput.value === '' || productPrice <= parseInt(maxPriceInput.value));
+
+        if (matchesCategory && matchesSize && matchesSearch && matchesPrice) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+// Event listeners for filters
+categoryItems.forEach(item => {
+    item.addEventListener('click', function (event) {
+        event.preventDefault();
+        categoryItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        filterProducts();
+    });
+});
+
+sizeItems.forEach(item => {
+    item.addEventListener('click', function (event) {
+        event.preventDefault();
+        sizeItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        filterProducts();
+    });
+});
+
+// Event listener for search functionality
+searchInput.addEventListener('input', filterProducts);
+
+// Event listener for price filtering
+document.getElementById('filterPriceBtn').addEventListener('click', filterProducts);
+document.getElementById('resetPriceBtn').addEventListener('click', function () {
+    minPriceInput.value = '';
+    maxPriceInput.value = '';
+    filterProducts();
+});
+document.querySelectorAll('.hover-image').forEach(img => {
+  const originalSrc = img.src;
+  const hoverSrc = img.dataset.hoverSrc;
+
+  img.addEventListener('mouseenter', () => {
+    // Set timeout for 1 second (1000ms)
+    hoverTimeout = setTimeout(() => {
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = hoverSrc;
+        img.style.opacity = '1';
+      }, 150); // This 150ms is for the fade effect
+    }, 350);
+  });
+
+  img.addEventListener('mouseleave', () => {
+    // Clear the timeout if mouse leaves before 1 second
+    clearTimeout(hoverTimeout);
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = originalSrc;
+      img.style.opacity = '1';
+    }, 150);
+  });
+});
 </script>
 <footer class="footer py-4" style="background-color: #0B2442; color: #F7F7F6;">
   <div class="container">
