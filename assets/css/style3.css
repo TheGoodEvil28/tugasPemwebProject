@@ -1,0 +1,90 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body settings */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FDFDFD;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Thank You Section Styling */
+.thank-you-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    max-width: 800px;
+}
+
+/* Heading */
+.thank-you-section h1 {
+    font-size: 40px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Paragraph */
+.thank-you-section p {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Image styling (kalau nanti mau tambah gambar) */
+.thank-you-section img {
+    max-width: 400px;
+    margin-top: -1em;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+/* Button styling */
+.btn {
+    background-color: #0B2442;
+    color: white;
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #154074;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Responsive for smaller devices */
+@media (max-width: 768px) {
+    .thank-you-section {
+        padding: 20px;
+    }
+    .thank-you-section h1 {
+        font-size: 32px;
+    }
+    .thank-you-section p {
+        font-size: 16px;
+    }
+    .thank-you-section img {
+        max-width: 250px;
+    }
+    .btn {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
