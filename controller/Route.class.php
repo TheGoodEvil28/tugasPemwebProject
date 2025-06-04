@@ -75,6 +75,8 @@ public function editProfile() {
             $size = $_POST['size'] ?? '';
             $fabric = $_POST['fabric'] ?? '';
             $description = $_POST['description'] ?? '';
+            $user = $_POST['user'] ?? '';
+
 
             // Handle photo upload
             $photoData = null;
@@ -95,7 +97,8 @@ public function editProfile() {
                 $condition,
                 $color,
                 $size,
-                $fabric
+                $fabric,
+                $user = 1
             ]);
 
             $productId = $product->save();

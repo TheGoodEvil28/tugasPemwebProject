@@ -31,7 +31,7 @@ class Product extends Model {
     }
 
     public function save() {
-        $stmt = $this->db->prepare("INSERT INTO products (category, brand, `condition`, color, size, fabric_type, description, created_at, user) VALUES (?, ?, ?, ?, ?, ?, ?,?, NOW())");
+        $stmt = $this->db->prepare("INSERT INTO products (category, brand, `condition`, color, size, fabric_type, description,  user, created_at) VALUES (?, ?, ?, ?, ?, ?, ?,?, NOW())");
         $stmt->execute([
             $this->category,
             $this->brand,

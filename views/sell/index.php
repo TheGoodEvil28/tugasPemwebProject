@@ -123,6 +123,11 @@
                     <option value="Polyester">Polyester</option>
                     <option value="Wool">Wool</option>
                 </select>
+                <!-- <label for="user">User Input</label>
+                <select name="user">
+                    <option value="1">User</option>
+                    <option value="2">Manajer</option>
+                </select> -->
             </div>
         </div>
 
