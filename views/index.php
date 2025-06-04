@@ -49,13 +49,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mobile-menu-item {{ request()->is('shopwomen') ? 'active' : '' }}" href="views/shop.html">
+          <a class="nav-link mobile-menu-item {{ request()->is('shopwomen') ? 'active' : '' }}" href="index.php?c=Route&m=shop">
             <span class="mobile-text">SHOP</span>
             <i class="fas fa-chevron-right mobile-arrow"></i> 
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mobile-menu-item {{ request()->is('sell') ? 'active' : '' }}" href="views/sell.html">
+          <a class="nav-link mobile-menu-item {{ request()->is('sell') ? 'active' : '' }}" href="index.php?c=Route&m=sell">
             <span class="mobile-text">SELL</span>
             <i class="fas fa-chevron-right mobile-arrow"></i> 
           </a>

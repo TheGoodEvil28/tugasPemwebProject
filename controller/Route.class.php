@@ -13,11 +13,24 @@ class Route extends Controller {
     function shop3() {
         $this->loadView('shop8.php');
     }
-    function sell() {
-        $this->loadView('sell.php');
+    public function sell() {
+        require_once 'views/Sell.php';
+    }
+    
+    public function confirmation() {
+        require_once 'views/Confirmation.php';
+    }
 
+    public function productDetail() {
+        require_once 'views/Product_detail.php';
     }
-    function profile() {
-        $this->loadView('profile.php');
-    }
+    // function sell() {
+    //     $this->loadView('sell.php');
+
+    // }
+    // function profile() {
+    //     $this->loadView('profile.php');
+    // }'
+    
+    
 }
