@@ -7,11 +7,16 @@
 	--white: #ffffff;
 }
 
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	font-family: "Montserrat", sans-serif;
 	background-color: var(--light-gray);
 	color: #333;
-	padding-top: 80px;
 }
 
 .profile-container {
