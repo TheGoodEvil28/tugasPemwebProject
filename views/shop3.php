@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thriftin - Toko Thrift</title>
     <link rel="icon" type="image/x-icon" href="../resource/images/logoT.png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../resource/css/nav.css">
+    <link rel="stylesheet" href="../resource/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/heroicons@1.0.1/dist/solid.js"></script>
-    <link rel="stylesheet" href="../resource/css/app.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../resource/css/payment.css">
-<link rel="stylesheet" href="../resource/css/shop.css">
+    <link rel="stylesheet" href="../resource/css/order.css">
+    <link rel="stylesheet" href="../resource/css/shop.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Voga&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resource/css/nav.css">
     <link rel="stylesheet" href="../resource/css/app.css">
@@ -29,7 +28,7 @@
   <div class="container d-flex justify-content-between align-items-center top-bar">
     
     <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="../index.html">
+    <a class="navbar-brand d-flex align-items-center" href="../index.php">
       <img src="../resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
     </a>
 
@@ -45,7 +44,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.html">
+          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.php">
             <span class="mobile-text">HOME</span>
             <i class="fas fa-chevron-right mobile-arrow"></i> 
           </a>
@@ -74,86 +73,87 @@
         <img src="../resource/images/Icon_Gambar/Semua_Icon/profile.png" alt="Profile Icon" style="width: 24px; height: 24px;">
       </a>
     </div>
+
   </div>
 </nav>
-</nav><!-- Payment Section -->
-<section class="payment-section container mt-5">
-    <!-- Payment Details -->
-    <div class="payment-details p-4 bg-white">
-        <h5 class="text-center mb-3">Pay before August 30, 2024 at 23:59</h5>
-        <h1 class="text-center mb-4 payment-amount">Rp 256.500</h1>
-        
-        <h4>Payment Method</h4>
-        
-        <!-- Bank Transfer Box -->
-        <div class="card p-4 mb-4 payment-box">
-            <h5>Bank Transfer</h5>
-            <div class="bank-logos">
-                <img src="../resource/images/Icon_Gambar/Order_Sell/Logo BCA.png" alt="BCA" class="payment-logo">
-                <img src="../resource/images/Icon_Gambar/Order_Sell/Logo Mandiri.png" alt="Mandiri" class="payment-logo">
-                <img src="../resource/images/Icon_Gambar/Order_Sell/Logo BRI.png" alt="BRI" class="payment-logo">
-                <a href="shop7.html" >
-                <img src="../resource/images/Icon_Gambar/Order_Sell/Logo BNI.png" alt="BNI" class="payment-logo">
-                </a>
-            </div>
-        </div>
-
-        <!-- E-Wallet Box -->
-        <div class="card p-2 mb-4 payment-box e-wallet-box">
-            <h5>E-Wallet</h5>
-            <a href="shop6.html" >
-                <img src="../resource/images/Icon_Gambar/ReWardPoint/logo_linkAja.png" alt="LinkAja" class="e-wallet">
-            </a>
-        </div>
-
-        <!-- QR Payment Box -->
-        <div class="card p-2 mb-4 d-flex justify-content-between align-items-left payment-box qr-payment-box">
-            <h5>QR Payment</h5>
-            <a href="shop8.html" >
-            <img src="../resource/images/Icon_Gambar/Order_Sell/Logo QRIS.png" alt="QR Payment" class="qr-payment">
-            </a>
-        </div>
-    </div>
-
-    <!-- Order Summary -->
-    <div class="order-summary p-4">
-        <h4 class="mb-4">Order Summary</h4>
-        <div class="card p-4 order-summary-card">
-            <div class="d-flex align-items-center">
-                <img src="../resource/images\Barang_Branded\Female\Top_s\Prada Morocain wo girl.avif" alt="Product Image" class="img-fluid order-product-img" style="width: 100px;">
-                <div class="ms-3">
-                    <h5>Prada Morocain</h5>
-                    <p>Rp 155.000 &nbsp; x1</p>
+    <!-- Order Section -->
+    <section class="order-section container my-5">
+        <div class="row g-4">
+            <!-- Order Summary -->
+            <div class="col-lg-6">
+                <div class="order-summary p-4 shadow-sm bg-light rounded">
+                    <h4 class="mb-4">Order</h4>
+                    <div class="card p-3 shadow-sm">
+                        <div class="d-flex align-items-center">
+                            <img src="../resource/images/Barang_Branded/Female/Top_s/Prada Morocain wo girl.avif" 
+                                alt="Product Image" class="img-fluid rounded" style="width: 100px; height: auto; margin-right: 20px;">
+                            <div>
+                                <h5 class="mb-1">Prada Morocain</h5>
+                                <p class="text-muted mb-1">Size L - Good Condition</p>
+                                <p class="text-muted mb-0">Color: White 
+                                    <span class="circle-color d-inline-block" 
+                                        style="background-color: #587098; width: 15px; height: 15px; border-radius: 50%;">
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p>Subtotal</p>
+                            <p>Rp 240.000</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>Shipping</p>
+                            <p>In the next stage</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <p>Total</p>
+                            <p>Rp 240.000</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr>
-            <div class="summary-details">
-                <div class="d-flex justify-content-between">
-                    <p>Subtotal</p>
-                    <p>Rp 240.000</p>
+
+            <!-- Address Section -->
+            <div class="col-lg-6">
+                <div class="address-section p-4 bg-white shadow-sm rounded">
+                    <h4 class="mb-4">Address</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address-search" class="form-label">Find Your Address</label>
+                            <input type="text" class="form-control" id="address-search" placeholder="Example: street/building/housing">
+                        </div>
+                        <div class="mb-3">
+                            <label for="full-address" class="form-label">Full Address</label>
+                            <textarea class="form-control" id="full-address" rows="3" placeholder="Make sure the address is correct"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="additional-details" class="form-label">Other Details (Optional)</label>
+                            <input type="text" class="form-control" id="additional-details" placeholder="Example: block, unit number or landmark">
+                        </div>
+                        <a href="index.php?c=Route&m=shop3" class="btn btn-dark w-100">Proceed to Delivery</a>
+                    </form>
+                    <div class="purchase-guarantee d-flex align-items-center mt-3">
+                        <img src="../resource/images/Icon_Gambar/Semua_Icon/insurance.png" alt="Insurance Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                        <small class="text-muted">Safe with Thriftin Purchase Guarantee</small>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <p>Shipping</p>
-                    <p>Rp 15.000</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <p>Shipping Insurance</p>
-                    <p>Rp 1.500</p>
-                </div>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between fw-bold total-section">
-                <p>Total</p>
-                <p>Rp 256.500</p>
             </div>
         </div>
-    </div>
+    </section>
 
-</section>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
     document.getElementById('profileIcon').addEventListener('click', function(event) {
         event.preventDefault();
         var dropdown = document.getElementById('profileDropdown');

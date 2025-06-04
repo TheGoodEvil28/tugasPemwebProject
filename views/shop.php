@@ -20,7 +20,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container d-flex justify-content-between align-items-center top-bar">
     
-   
+   <!-- Logo -->
+   <a class="navbar-brand d-flex align-items-center" href="../index.php">
+    <img src="../resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
+  </a>
+
 
     <!-- Hamburger Menu (Mobile View) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -34,7 +38,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.html">
+          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.php">
             <span class="mobile-text">HOME</span>
             <i class="fas fa-chevron-right mobile-arrow"></i> 
           </a>
@@ -63,7 +67,6 @@
         <img src="../resource/images/Icon_Gambar/Semua_Icon/profile.png" alt="Profile Icon" style="width: 24px; height: 24px;">
       </a>
     </div>
-
   </div>
 </nav>
 <!-- Shop Section -->
@@ -81,74 +84,15 @@
                 <a class="nav-link" href="shopkid.html" data-category="kid">Kid</a>
             </li>
         </ul>
-
-        <!-- Search Bar -->
-        <div class="input-group search-wrapper">
-            <input type="text" class="form-control search-bar" placeholder="Search for items" id="search-input">
-        </div>
     </div>
 
-    <!-- Filter Section -->
-    <div class="filters-section d-flex">
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="categoryFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                Category
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="categoryFilter">
-                <li><a class="dropdown-item" href="#" data-category="">Women</a></li>
-                <li><a class="dropdown-item" href="#" data-category="tops">Tops</a></li>
-                <li><a class="dropdown-item" href="#" data-category="bottoms">Bottom</a></li>
-                <li><a class="dropdown-item" href="#" data-category="outerwear">Outerwear</a></li>
-                <li><a class="dropdown-item" href="#" data-category="dresses">Dresses</a></li>
-                <li><a class="dropdown-item" href="#" data-category="footwear">Footwear</a></li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="sizeFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                Size
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="sizeFilter">
-                <li><a class="dropdown-item" href="#" data-size="">Size</a></li>
-                <li><a class="dropdown-item" href="#" data-size="s">S</a></li>
-                <li><a class="dropdown-item" href="#" data-size="m">M</a></li>
-                <li><a class="dropdown-item" href="#" data-size="l">L</a></li>
-                <li><a class="dropdown-item" href="#" data-size="xl">XL</a></li>
-                <li><a class="dropdown-item" href="#" data-size="onesize">Shoe Size</a></li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="priceFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                Price
-            </button>
-            <ul class="dropdown-menu p-3">
-                <input type="number" id="minPrice" class="form-control" placeholder="Rp Min">
-                <span> - </span>
-                <input type="number" id="maxPrice" class="form-control" placeholder="Rp Max">
-                <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-dark" id="filterPriceBtn">Done</button>
-                    <button class="btn btn-secondary" id="resetPriceBtn">Reset</button>
-                </div>
-            </ul>
-        </div>
-
-        <div class="dropdown sort-dropdown">
-            <button class="btn dropdown-toggle d-flex align-items-center justify-content-between" type="button" id="sortFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                Sort by
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="sortFilter">
-                <li><a class="dropdown-item" data-sort="low" href="#">Low to High</a></li>
-                <li><a class="dropdown-item" data-sort="high" href="#">High to Low</a></li>
-            </ul>
-        </div>
-    </div>
+    
 
     <!-- Product Grid -->
     <div class="row g-4" id="product-grid">
         <div class="col-12 col-sm-6 col-md-3 product-card" data-category="tops" data-size="l" data-price="240000">
             <div class="card">
-                <a href="shop2.html">
+            <a href="index.php?c=Route&m=shop2">
                     <img src="../resource/images\Barang_Branded\Female\Top_s\Prada Morocain wo girl.avif" 
                     data-hover-src="../resource/images\Barang_Branded\Female\Top_s\Prada Morocain.avif"
                     class="card-img-top hover-image" alt="Product Image">
@@ -158,7 +102,7 @@
                         <p class="product-size">Size L</p>
                         <img src="../resource/images/Icon_Gambar/Semua_Icon/love.png" class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
                     </div>
-                    <a href="shop2.html" class="product-link">
+                    <a href="index.php?c=Route&m=shop2" class="product-link">
                         <h5 class="product-name">Prada Marocain top</h5>
                     </a>
                     <p class="product-price">Rp 240.000</p>

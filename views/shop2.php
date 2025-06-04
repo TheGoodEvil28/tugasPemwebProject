@@ -28,7 +28,7 @@
   <div class="container d-flex justify-content-between align-items-center top-bar">
     
     <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="../index.html">
+    <a class="navbar-brand d-flex align-items-center" href="../index.php">
       <img src="../resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
     </a>
 
@@ -44,7 +44,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.html">
+          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.php">
             <span class="mobile-text">HOME</span>
             <i class="fas fa-chevron-right mobile-arrow"></i> 
           </a>
@@ -119,7 +119,7 @@
 
                 <!-- Shop and Add to Cart Buttons -->
                 <div class="mt-3">
-                    <a href="shop3.html" class="btn btn-dark w-50 mb-2">Shop Now</a>
+                <a href="index.php?c=Route&m=shop3" class="btn btn-dark w-50 mb-2">Shop Now</a>
                     <a href="#" class="btn btn-outline-dark w-50">+ To Cart</a>
                 </div>
 

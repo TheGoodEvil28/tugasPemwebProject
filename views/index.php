@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,7 @@
   <div class="container d-flex justify-content-between align-items-center top-bar">
     
     <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
+    <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="resource/images/Logo_Thriftin.png" alt="Thriftin Logo" class="img-fluid logo-image">
     </a>
 
@@ -42,7 +43,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="index.html">
+          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="#">
             <span class="mobile-text">HOME</span>
             <i class="fas fa-chevron-right mobile-arrow"></i> 
           </a>
@@ -88,7 +89,7 @@
                     <br>
                     <div class="cta-buttons mt-4">
                         <a href="views/sell.html" class="btn sell-btn">Sell</a>
-                        <a href="views/shop.html" class="btn shop-btn">Shop</a>
+                        <a href="index.php?c=Route&m=shop" class="btn shop-btn">Shop</a>
                     </div>
                 </div>
             </div>
@@ -479,3 +480,4 @@ document.querySelectorAll('.hover-image').forEach(img => {
 
 </body>
 </html>
+
