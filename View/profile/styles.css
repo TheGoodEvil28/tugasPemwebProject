@@ -577,76 +577,175 @@ body {
 
 /* Mobile-Specific Adjustments */
 @media (max-width: 414px) {
-	.profile-content {
-		padding: 0 10px;
-	}
-
-	.history-item {
-		flex-direction: row;
-		align-items: center;
-	}
-
-	.history-item-img {
-		width: 60px;
-		height: 60px;
-	}
-
-	.history-item-details {
-		min-width: 0;
-	}
-
-	.history-item-status {
-		font-size: 11px;
-	}
-
-	/* Tap Target Optimization */
-	button,
-	a,
-	[tabindex] {
-		min-height: 44px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+  :root {
+    --mobile-scale: 1.18;
+    --vertical-rhythm: 3px;
+  }
+  
+  .profile-container {
+    padding: 16px 12px;
+  }
+  
+  /* Profile Header Adjustments */
+  .profile-header {
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+  
+  .profile-header::before {
+    height: 70px;
+  }
+  
+  .profile-avatar {
+    width: 92px;
+    height: 92px;
+    margin-bottom: 14px;
+    border-width: 3px;
+  }
+  
+  .profile-name {
+    font-size: 19px;
+    line-height: 1.25;
+  }
+  
+  .profile-username {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  
+  /* Stats Grid Layout */
+  .profile-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 18px;
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 8px;
+    background: var(--light-gray);
+    border-radius: 8px;
+  }
+  
+  .stat-value {
+    font-size: 17px;
+  }
+  
+  .stat-label {
+    font-size: 11px;
+  }
+  
+  /* History Item Optimizations */
+  .history-item {
+    padding: 14px;
+    flex-direction: column;
+  }
+  
+  .history-item-img {
+    width: 100%;
+    height: 130px;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  
+  .history-item-details {
+    width: 100%;
+  }
+  
+  .history-item-price {
+    text-align: left;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+    width: 100%;
+  }
+  
+  /* Action Button Sizing */
+  .action-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  
+  /* Form Element Sizing */
+  .edit-profile-btn,
+  .modal-cancel,
+  .modal-confirm {
+    min-height: 46px;
+    padding: 12px 20px;
+  }
+  
+  /* Tab Bar Improvements */
+  .history-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+  }
+  
+  .history-tab {
+    padding: 12px 8px;
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  /* Modal Positioning */
+  .modal-center-helper {
+    padding: 16px;
+    align-items: flex-start;
+  }
+  
+  .modal-content {
+    margin-top: 20vh;
+  }
 }
 
-/* Tablet Adjustments */
-@media (min-width: 415px) and (max-width: 768px) {
-	.profile-container {
-		padding: 25px 20px;
-	}
-
-	.profile-avatar {
-		width: 110px;
-		height: 110px;
-	}
-
-	.history-item-img {
-		width: 90px;
-		height: 90px;
-	}
+/* Height-specific Adjustments */
+@media (max-width: 414px) and (max-height: 896px) {
+  .profile-header::before {
+    height: 65px;
+  }
+  
+  .profile-avatar {
+    width: 88px;
+    height: 88px;
+  }
+  
+  .history-item-img {
+    height: 115px;
+  }
+  
+  .modal-center-helper {
+    align-items: center;
+    padding-top: 40px;
+  }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-	.profile-stats {
-		gap: 15px;
-	}
-
-	.history-item {
-		flex-direction: column;
-		align-items: flex-start;
-	}
-
-	.history-item-img {
-		margin-right: 0;
-		margin-bottom: 15px;
-		width: 100%;
-		height: 150px;
-	}
-
-	.history-item-price {
-		text-align: left;
-		margin-top: 10px;
-	}
+/* Landscape Orientation */
+@media (max-width: 896px) and (orientation: landscape) {
+  .profile-content {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    padding: 0 20px;
+  }
+  
+  .profile-avatar {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .profile-stats {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 100%;
+  }
 }

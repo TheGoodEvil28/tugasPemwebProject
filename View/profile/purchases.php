@@ -30,7 +30,7 @@
 
             <div class="history-item-actions">
                 <!-- View Details button -->
-                <a href="?c=Products&m=detail&id=<?= $item['id'] ?>" class="action-btn view-details" title="Product Details">
+                <a href="?c=Profile&m=viewProduct&id=<?= $item['id'] ?>" class="action-btn view-details" title="Product Details">
                     <i class="fas fa-eye"></i>
                 </a>
 

@@ -80,7 +80,24 @@ class Profile extends Controller
 
 
 
+    public function viewProduct()
+    {
+        $productId = $_GET['id'] ?? 0;
+        $productModel = $this->loadModel('Product');
 
+        // Get product details and image
+        $product = $productModel->getProductWithImage($productId);
+
+        if (!$product) {
+            header("Location: ?c=profile&m=sales");
+            exit;
+        }
+
+        $this->loadView('productDetail', [
+            'product' => $product,
+            'image' => $product['image_url'] ?? 'public/assets/default-product.jpg'
+        ]);
+    }
     public function updateProduct()
     {
         $id = $_GET['id'] ?? 0;

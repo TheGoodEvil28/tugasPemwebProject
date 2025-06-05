@@ -9,6 +9,23 @@ class Product extends Model
         return $stmt->get_result()->fetch_assoc();
     }
 
+    public function getProductWithImage($id)
+    {
+        // Get product details
+        $stmt = $this->db->prepare("
+            SELECT p.*, 
+                CONCAT('data:', pi.image_type, ';base64,', TO_BASE64(pi.image_data)) AS image_url
+            FROM products p
+            LEFT JOIN product_images pi ON p.id = pi.product_id
+            WHERE p.id = ?
+            ORDER BY pi.id ASC
+            LIMIT 1
+        ");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
     public function updateProduct($id, $data)
     {
         $userId = $this->getActiveAccountId();
