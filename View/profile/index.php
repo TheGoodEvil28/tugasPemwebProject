@@ -95,10 +95,10 @@
                         <div class="stat-value"><?= $stats['sales'] ?></div>
                         <div class="stat-label">Items Sold</div>
                     </div>
-                    <div class="stat-item">
+                    <!-- <div class="stat-item">
                         <div class="stat-value"><?= $stats['donations'] ?></div>
                         <div class="stat-label">Donations</div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="profile-xp">
@@ -116,7 +116,7 @@
         <div class="history-tabs">
             <a href="?c=Profile&m=purchases" class="history-tab <?= $active_tab === 'purchases' ? 'active' : '' ?>"><i class="fas fa-shopping-bag me-2"></i>Purchases</a>
             <a href="?c=Profile&m=sales" class="history-tab <?= $active_tab === 'sales' ? 'active' : '' ?>"><i class="fas fa-tag me-2"></i>Sales</a>
-            <a href="?c=Profile&m=donation" class="history-tab <?= $active_tab === 'donation' ? 'active' : '' ?>"><i class="fas fa-hands-helping me-2"></i>Donations</a>
+            <!-- <a href="?c=Profile&m=donation" class="history-tab <?= $active_tab === 'donation' ? 'active' : '' ?>"><i class="fas fa-hands-helping me-2"></i>Donations</a> -->
         </div>
 
         <!-- Content Section -->
@@ -125,9 +125,41 @@
                 <?php include 'purchases.php' ?>
             <?php elseif ($active_tab === 'sales'): ?>
                 <?php include 'sales.php' ?>
-            <?php else: ?>
-                <?php include 'donation.php' ?>
             <?php endif; ?>
+        </div>
+
+        <div id="global-modals">
+            <?php foreach ($history_items as $item): ?>
+                <!-- Take Down Confirmation Modal -->
+                <div class="cancel-modal" id="takeDownModal-<?= $item['id'] ?>">
+                    <div class="modal-center-helper">
+                        <div class="modal-content">
+                            <button class="modal-close">&times;</button>
+                            <h3>Confirm Take Down</h3>
+                            <p>Are you sure you want to remove this product from sale?</p>
+                            <div class="modal-buttons">
+                                <button class="modal-cancel">No, Keep Product</button>
+                                <a href="?c=Products&m=delete&id=<?= $item['id'] ?>" class="modal-confirm">Yes, Take Down</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancellation Confirmation Modal -->
+                <div class="cancel-modal" id="cancelModal-<?= $item['id'] ?>">
+                    <div class="modal-center-helper">
+                        <div class="modal-content">
+                            <button class="modal-close">&times;</button>
+                            <h3>Confirm Cancellation</h3>
+                            <p>Are you sure you want to cancel this order?</p>
+                            <div class="modal-buttons">
+                                <button class="modal-cancel">No, Keep Order</button>
+                                <a href="?c=Products&m=cancel&id=<?= $item['id'] ?>" class="modal-confirm">Yes, Cancel Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -189,6 +221,44 @@
     </footer>
 
     <script src="public/js/navbar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle modal triggers
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        // Move modal to global modals container if needed
+                        const globalModals = document.getElementById('global-modals');
+                        if (modal.parentNode !== globalModals) {
+                            globalModals.appendChild(modal);
+                        }
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            // Handle modal close actions
+            document.querySelectorAll('.modal-cancel, .modal-close, .modal-center-helper').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.cancel-modal');
+                    if (modal) modal.style.display = 'none';
+                });
+            });
+
+            // Close modal when clicking on overlay
+            document.querySelectorAll('.cancel-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

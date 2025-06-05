@@ -10,7 +10,7 @@ class Profile extends Controller
         return [
             'purchases' => count($historyModel->getPurchases()),
             'sales' => count($historyModel->getSales()),
-            'donations' => count($historyModel->getDonations()),
+            // 'donations' => count($historyModel->getDonations()),
             'xp' => $accountModel->getXP()
         ];
     }
@@ -44,17 +44,6 @@ class Profile extends Controller
         $this->loadView('profile', $data);
     }
 
-    public function donation()
-    {
-        $model = $this->loadModel('History');
-        $data = [
-            'active_tab' => 'donation',
-            'history_items' => $model->getDonations(),
-            'user' => $this->loadModel('Account')->getUserProfile(),
-            'stats' => $this->getProfileStats()
-        ];
-        $this->loadView('profile', $data);
-    }
 
     public function edit()
     {
@@ -64,35 +53,6 @@ class Profile extends Controller
             'user' => $model->getUserProfile()
         ]);
     }
-
-    // public function update()
-    // {
-    //     // Handle form submission
-    //     $model = $this->loadModel('account');
-    //     $messages = [];
-
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $updateData = [
-    //             'display_name' => $_POST['display_name'] ?? '',
-    //             'email' => $_POST['email'] ?? '',
-    //             'phone' => $_POST['phone'] ?? ''
-    //         ];
-
-    //         if ($model->updateProfile($updateData)) {
-    //             $messages['success'] = 'Profile updated successfully!';
-    //         } else {
-    //             $messages['error'] = 'Failed to update profile';
-    //         }
-    //     }
-
-    //     $data = [
-    //         'user' => $model->getUserProfile(),
-    //         'messages' => $messages
-    //     ];
-
-    //     // Show edit form with updated data and messages
-    //     $this->loadView('editProfile', $data);
-    // }
 
     public function update()
     {
@@ -116,5 +76,96 @@ class Profile extends Controller
         }
 
         header("Location:?c=profile&m=edit");
+    }
+
+
+
+
+    public function updateProduct()
+    {
+        $id = $_GET['id'] ?? 0;
+        $productModel = $this->loadModel('Product');
+        $product = $productModel->getProductById($id);
+
+        if (!$product) {
+            header("Location: ?c=profile&m=sales");
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $updateData = [
+                'category' => $_POST['category'],
+                'brand' => $_POST['brand'],
+                'condition' => $_POST['condition'],
+                'color' => $_POST['color'],
+                'size' => $_POST['size'],
+                'fabric_type' => $_POST['fabric_type'],
+                'description' => $_POST['description'],
+                'price' => (float)$_POST['price']
+            ];
+
+            if ($productModel->updateProduct($id, $updateData)) {
+                $_SESSION['success'] = 'Product updated successfully!';
+                header("Location: ?c=profile&m=sales");
+                exit;
+            } else {
+                $error = 'Failed to update product';
+            }
+        }
+
+        $this->loadView('updateProduct', [
+            'product' => $product,
+            'error' => $error ?? null
+        ]);
+    }
+
+    public function deleteProduct()
+    {
+        $id = $_GET['id'] ?? 0;
+        $productModel = $this->loadModel('Product');
+
+        if ($productModel->deleteProduct($id)) {
+            $_SESSION['success'] = 'Product deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete product';
+        }
+
+        header("Location: ?c=profile&m=sales");
+        exit;
+    }
+
+    public function updateOrder()
+    {
+        $orderId = $_GET['id'] ?? 0;
+        $orderModel = $this->loadModel('Order');
+        $order = $orderModel->getOrderById($orderId);
+
+        if (!$order) {
+            header("Location: ?c=profile&m=purchases");
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $updateData = [
+                'name' => $_POST['name'],
+                'phone_number' => $_POST['phone_number'],
+                'address_search' => $_POST['address_search'],
+                'full_address' => $_POST['full_address'],
+                'additional_details' => $_POST['additional_details']
+            ];
+
+            if ($orderModel->updateOrder($orderId, $updateData)) {
+                $_SESSION['success'] = 'Order updated successfully!';
+                header("Location: ?c=profile&m=purchases");
+                exit;
+            } else {
+                $error = 'Failed to update order';
+            }
+        }
+
+        $this->loadView('updateOrder', [
+            'order' => $order,
+            'error' => $error ?? null
+        ]);
     }
 }

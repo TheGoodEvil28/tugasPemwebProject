@@ -6,7 +6,7 @@ class Model {
         $hostname = 'localhost:3307';
         $username = 'root';
         $password = '';
-        $dbname   = 'thriftin';
+        $dbname   = 'thriftin2';
 
         $this->db = new mysqli($hostname, $username, $password, $dbname);
 
