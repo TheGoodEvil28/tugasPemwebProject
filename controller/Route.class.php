@@ -46,19 +46,26 @@ class Route extends Controller {
 }
 
     
-public function editProfile() {
-        $product = $_SESSION['product'];
-    $this->loadView('editProduct', ['product' => $product]);
-}
+// public function editProfile() {
+//         $product = $_SESSION['product'];
+//     $this->loadView('editProduct', ['product' => $product]);
+// }
 
-    public function confirmation() {
+   public function confirmation(): void {
     session_start();
 
-    if (isset($_SESSION['product'])) {
-        $product = $_SESSION['product'];
-        $this->loadView('confirmation', ['product' => $product]);
+    if (isset($_GET['id'])) {
+        $productId = $_GET['id'];
+        $productModel = $this->loadModel('Product');
+        $productData = $productModel->getById($productId);
+
+        if ($productData) {
+            $this->loadView('confirmation', ['product' => $productData]);
+        } else {
+            echo "Product not found in confirmation.";
+        }
     } else {
-        echo "No product data to confirm.";
+        echo "No product id provided to confirm.";
     }
 }
 
@@ -180,26 +187,32 @@ public function serveImage() {
 
 
 
-    public function saveProduct() {
-        session_start();
+public function saveProduct() {
+    session_start();
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['product_id'])) {
-            $price = $_POST['price'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['product_id'])) {
+        $price = $_POST['price'];
 
-            $product = $this->loadModel('Product');
-            $productId = $_SESSION['product_id'];
-            $product->updatePrice($productId, $price);
+        $product = $this->loadModel('Product');
+        $productId = $_SESSION['product_id'];
+        $product->updatePrice($productId, $price);
 
-            // Optionally clear the session product_id if no longer needed
-            unset($_SESSION['product_id']);
+        // Fetch product data and store it in session
+        $productData = $product->getById($productId);
+        $_SESSION['product'] = $productData;
 
-            header('Location: ?c=Route&m=confirmation');
-            exit;
-        } else {
-            echo "Invalid request!";
-            exit;
-        }
+        // Optionally clear product_id from session
+        unset($_SESSION['product_id']);
+
+        // Go to confirmation page
+        header('Location: ?c=Route&m=confirmation&id=' . $productId);
+        exit;
+    } else {
+        echo "Invalid request!";
+        exit;
     }
+}
+
 
    public function saveOrder() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

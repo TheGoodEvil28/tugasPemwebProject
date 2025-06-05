@@ -105,6 +105,8 @@
                    class="wishlist-icon" alt="Wishlist Icon" style="width: 24px; height: 24px;">
             </div>
             <h5 class="product-name"><?php echo htmlspecialchars($product['brand']); ?></h5>
+            <h5 class="product-name"><?php echo htmlspecialchars($product['description']); ?></h5>
+
             <p class="product-price">Rp <?php echo number_format($product['price'], 0, ',', '.'); ?></p>
           </div>
         </div>
