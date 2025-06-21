@@ -1,42 +1,39 @@
-    <?php
-    class Order extends Model
+<?php
+// model/Order.model.php
+class Order extends Model
+{
+    public function updateOrder($orderId, $updateData)
     {
-        public function getOrderById($id)
-        {
-            $userId = $this->getActiveAccountId();
-            $stmt = $this->db->prepare("
-                SELECT o.*, p.description AS product_title, p.price
-                FROM orders o
-                JOIN products p ON o.product_id = p.id
-                WHERE o.id = ? AND o.user_id = ?
-            ");
-            $stmt->bind_param("ii", $id, $userId);
-            $stmt->execute();
-            return $stmt->get_result()->fetch_assoc();
+        $validFields = ['name', 'phone_number', 'address_search', 'full_address', 'additional_details'];
+        $setClauses = [];
+        $types = '';
+        $values = [];
+
+        foreach ($updateData as $key => $value) {
+            if (in_array($key, $validFields)) {
+                $setClauses[] = "`$key` = ?";
+                $types .= 's';
+                $values[] = $value;
+            }
         }
 
-        public function updateOrder($id, $data)
-        {
-            $userId = $this->getActiveAccountId();
-            $stmt = $this->db->prepare("
-                UPDATE orders 
-                SET name = ?, phone_number = ?, 
-                    address_search = ?, full_address = ?, 
-                    additional_details = ?
-                WHERE id = ? AND user_id = ?
-            ");
+        if (empty($setClauses)) return false;
 
-            $stmt->bind_param(
-                "sssssii",
-                $data['name'],
-                $data['phone_number'],
-                $data['address_search'],
-                $data['full_address'],
-                $data['additional_details'],
-                $id,
-                $userId
-            );
+        $values[] = $orderId;
+        $types .= 'i';
 
-            return $stmt->execute();
-        }
+        $sql = "UPDATE orders SET " . implode(', ', $setClauses) . " WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$values);
+        return $stmt->execute();
     }
+
+    public function getById($orderId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM orders WHERE id = ?");
+        $stmt->bind_param("i", $orderId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+}

@@ -101,11 +101,6 @@
                     </div> -->
                 </div>
 
-                <div class="profile-xp">
-                    <i class="fas fa-star"></i>
-                    <?= number_format($user['xp_points'], 0, ',', '.') ?> XP Points
-                </div>
-
                 <a href="?c=Profile&m=edit" class="edit-profile-btn">
                     <i class="fas fa-edit me-2"></i>Edit Profile
                 </a>
@@ -254,6 +249,138 @@
                     if (e.target === this) {
                         this.style.display = 'none';
                     }
+                });
+            });
+        });
+
+        document.querySelectorAll('.view-update').forEach(button => {
+            button.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-modal-target');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                }
+            });
+        });
+
+        document.querySelectorAll('.cancel-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Prevent modal from closing when clicking inside content
+        document.querySelectorAll('.modal-center-helper, .modal-content').forEach(element => {
+            element.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        // Add to profile view script
+        function toggleProductDetails(header) {
+            const section = header.closest('.product-details');
+            const content = section.querySelector('.collapsible-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            section.classList.toggle('collapsed');
+
+            // If we're expanding, set max-height to scrollHeight
+            if (!section.classList.contains('collapsed')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+
+        // Initialize collapsible sections
+        document.querySelectorAll('.product-details').forEach(section => {
+            const content = section.querySelector('.collapsible-content');
+            // Start in collapsed state on mobile
+            if (window.innerWidth < 992) {
+                section.classList.add('collapsed');
+                content.style.maxHeight = '0';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+
+        // Handle responsive behavior
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.product-details').forEach(section => {
+                const content = section.querySelector('.collapsible-content');
+                if (window.innerWidth < 992 && !section.classList.contains('collapsed')) {
+                    section.classList.add('collapsed');
+                    content.style.maxHeight = '0';
+                } else if (window.innerWidth >= 992) {
+                    section.classList.remove('collapsed');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal open functionality
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('disabled')) return;
+
+                    const modalId = this.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to close modals
+            function closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
+
+            // Open modal when clicking a button with data-modal-target
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('disabled')) return;
+
+                    const modalId = this.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // Close modals when clicking close buttons
+            document.querySelectorAll('.modal-close, .modal-cancel').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal-close');
+                    closeModal(modalId);
+                });
+            });
+
+            // Close modal when clicking on overlay
+            document.querySelectorAll('.cancel-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal(this.id);
+                    }
+                });
+            });
+
+            // Prevent closing when clicking inside modal content
+            document.querySelectorAll('.modal-content').forEach(content => {
+                content.addEventListener('click', function(e) {
+                    e.stopPropagation();
                 });
             });
         });

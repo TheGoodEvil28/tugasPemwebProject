@@ -1,64 +1,52 @@
 <?php
+
+// model/Product.model.php
+// model/Product.model.php
 class Product extends Model
 {
-    public function getProductById($id)
+    public function update($productId, $updateData)
+    {
+        $validFields = [
+            'title',
+            'price',
+            'category',
+            'brand',
+            'condition',
+            'color',
+            'size',
+            'fabric_type',
+            'description'
+        ];
+
+        $setClauses = [];
+        $types = '';
+        $values = [];
+
+        foreach ($updateData as $key => $value) {
+            if (in_array($key, $validFields)) {
+                $setClauses[] = "`$key` = ?";
+                $types .= 's';
+                $values[] = $value;
+            }
+        }
+
+        if (empty($setClauses)) return false;
+
+        $values[] = $productId;
+        $types .= 'i';
+
+        $sql = "UPDATE products SET " . implode(', ', $setClauses) . " WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$values);
+        return $stmt->execute();
+    }
+
+    public function getById($productId)
     {
         $stmt = $this->db->prepare("SELECT * FROM products WHERE id = ?");
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("i", $productId);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-
-    public function getProductWithImage($id)
-    {
-        // Get product details
-        $stmt = $this->db->prepare("
-            SELECT p.*, 
-                CONCAT('data:', pi.image_type, ';base64,', TO_BASE64(pi.image_data)) AS image_url
-            FROM products p
-            LEFT JOIN product_images pi ON p.id = pi.product_id
-            WHERE p.id = ?
-            ORDER BY pi.id ASC
-            LIMIT 1
-        ");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-
-    public function updateProduct($id, $data)
-    {
-        $userId = $this->getActiveAccountId();
-        $stmt = $this->db->prepare("
-            UPDATE products 
-            SET category = ?, brand = ?, `condition` = ?, 
-                color = ?, size = ?, fabric_type = ?, 
-                description = ?, price = ? 
-            WHERE id = ? AND user_id = ?
-        ");
-
-        $stmt->bind_param(
-            "sssssssdii",
-            $data['category'],
-            $data['brand'],
-            $data['condition'],
-            $data['color'],
-            $data['size'],
-            $data['fabric_type'],
-            $data['description'],
-            $data['price'],
-            $id,
-            $userId
-        );
-
-        return $stmt->execute();
-    }
-
-    public function deleteProduct($id)
-    {
-        $userId = $this->getActiveAccountId();
-        $stmt = $this->db->prepare("DELETE FROM products WHERE id = ? AND user_id = ?");
-        $stmt->bind_param("ii", $id, $userId);
-        return $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 }

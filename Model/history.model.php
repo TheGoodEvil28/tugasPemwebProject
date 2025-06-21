@@ -69,7 +69,7 @@ class History extends Model
     {
         $userId = $this->getActiveAccountId();
         $stmt = $this->db->prepare("
-           SELECT 
+        SELECT 
             p.id,  
             COALESCE(o.created_at, p.created_at) AS date,
             p.price,
@@ -77,8 +77,14 @@ class History extends Model
             pi.image_data,
             pi.image_type,
             p.condition AS item_condition,
-            COALESCE(o.status, 'on sale') AS status,
+            p.category,
+            p.brand,
+            p.color,
+            p.size,
+            p.fabric_type,
+            p.description, 
             p.created_at AS product_created_at,
+            COALESCE(o.status, 'on sale') AS status,
             CASE 
                 WHEN o.id IS NOT NULL THEN 'sold'
                 ELSE 'on sale'
@@ -127,7 +133,21 @@ class History extends Model
             pi.image_data,
             pi.image_type,
             p.condition AS item_condition,
-            o.status
+            o.status,
+            
+            /* Ensure address_search is included */
+            o.address_search,
+            o.name AS recipient_name,
+            o.phone_number,
+            o.full_address,
+            o.additional_details AS shipping_notes,
+            p.category,
+            p.brand,
+            p.color,
+            p.size,
+            p.fabric_type,
+            p.description AS full_description,
+            p.created_at AS product_listed_date
         FROM orders o
         JOIN products p ON o.product_id = p.id
         LEFT JOIN (
@@ -153,6 +173,14 @@ class History extends Model
             } else {
                 $purchase['image'] = null;
             }
+            // Preserve original keys
+            $purchase += [
+                'original_id' => $purchase['id'],
+                'original_date' => $purchase['date'],
+                'original_price' => $purchase['price'],
+                'original_title' => $purchase['title'],
+                'original_status' => $purchase['status'],
+            ];
             unset($purchase['image_data'], $purchase['image_type']);
         }
 
