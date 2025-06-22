@@ -24,5 +24,11 @@ class Model {
             echo "Connection error: " . $exception->getMessage();
         }
         return $conn;
+    
+    }
+
+    protected function getActiveAccountId() {
+        if(session_status() === PHP_SESSION_NONE) session_start();
+        return $_SESSION['active_account_id'] ?? null;
     }
 }

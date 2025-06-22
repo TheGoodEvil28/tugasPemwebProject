@@ -65,34 +65,6 @@ class Profile extends Controller
         ]);
     }
 
-    // public function update()
-    // {
-    //     // Handle form submission
-    //     $model = $this->loadModel('account');
-    //     $messages = [];
-
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $updateData = [
-    //             'display_name' => $_POST['display_name'] ?? '',
-    //             'email' => $_POST['email'] ?? '',
-    //             'phone' => $_POST['phone'] ?? ''
-    //         ];
-
-    //         if ($model->updateProfile($updateData)) {
-    //             $messages['success'] = 'Profile updated successfully!';
-    //         } else {
-    //             $messages['error'] = 'Failed to update profile';
-    //         }
-    //     }
-
-    //     $data = [
-    //         'user' => $model->getUserProfile(),
-    //         'messages' => $messages
-    //     ];
-
-    //     // Show edit form with updated data and messages
-    //     $this->loadView('editProfile', $data);
-    // }
 
     public function update()
     {
