@@ -35,7 +35,7 @@
             </div>
 
             <div class="history-item-actions">
-                <button class="action-btn cancel-order <?= $item['status'] === 'delivered' ? 'disabled' : '' ?>"
+                <button class="action-btn cancel-order <?= $item['status'] === 'delivered' || 'pending' ? 'disabled' : '' ?>"
                     data-modal-target="deleteProductModal"
                     data-item-id="<?= $item['id'] ?>">
                     <i class="fas fa-trash-alt"></i>
