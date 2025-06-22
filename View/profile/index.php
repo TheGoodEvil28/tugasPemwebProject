@@ -122,8 +122,37 @@
                 <?php include 'sales.php' ?>
             <?php endif; ?>
         </div>
+        <div id="global-modals">
+            <!-- Delete Order Modal -->
+            <div class="cancel-modal" id="deleteOrderModal">
+                <div class="modal-center-helper">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h3>Confirm Delete</h3>
+                        <p>Are you sure you want to permanently delete this order?</p>
+                        <div class="modal-buttons">
+                            <button class="modal-cancel">No, Keep Order</button>
+                            <a href="#" class="modal-confirm">Yes, Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div id="global-modals"></div>
+            <!-- Delete Product Modal -->
+            <div class="cancel-modal" id="deleteProductModal">
+                <div class="modal-center-helper">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h3>Confirm Delete</h3>
+                        <p>Are you sure you want to permanently delete this product?</p>
+                        <div class="modal-buttons">
+                            <button class="modal-cancel">No, Keep Product</button>
+                            <a href="#" class="modal-confirm">Yes, Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -185,9 +214,15 @@
     <script src="public/js/navbar.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all modals as hidden
+            document.querySelectorAll('.cancel-modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+
             // Modal handling
             document.querySelectorAll('[data-modal-target]').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const modalId = this.getAttribute('data-modal-target');
                     const itemId = this.getAttribute('data-item-id');
                     const modal = document.getElementById(modalId);
@@ -205,8 +240,18 @@
 
             // Close modals
             document.querySelectorAll('.modal-close, .modal-cancel').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
                     this.closest('.cancel-modal').style.display = 'none';
+                });
+            });
+
+            // Close modal when clicking outside
+            document.querySelectorAll('.cancel-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                    }
                 });
             });
         });

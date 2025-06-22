@@ -35,14 +35,12 @@
             </div>
 
             <div class="history-item-actions">
-                <button class="action-btn cancel-order"
+                <button class="action-btn cancel-order <?= $item['status'] === 'delivered' ? 'disabled' : '' ?>"
                     data-modal-target="deleteProductModal"
                     data-item-id="<?= $item['id'] ?>">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </div>
-
-
         </div>
     <?php endforeach; ?>
 <?php endif; ?>

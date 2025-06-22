@@ -31,29 +31,12 @@
             </div>
 
             <div class="history-item-actions">
-                <!-- Delete Order Button -->
-                <<button class="action-btn cancel-order" 
-                    data-item-id="<?= $item['id'] ?>"
-                    data-item-type="order"
-                    <?= $item['status'] === 'delivered' ? 'disabled' : '' ?>>
+                <button class="action-btn cancel-order <?= $item['status'] === 'delivered' ? 'disabled' : '' ?>"
+                    data-modal-target="deleteOrderModal"
+                    data-item-id="<?= $item['id'] ?>">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </div>
-
-
-        <!-- Delete Order Confirmation Modal -->
-        <div class="cancel-modal" id="deleteModal-<?= $item['id'] ?>">
-            <div class="modal-center-helper">
-                <div class="modal-content">
-                    <h3>Confirm Delete</h3>
-                    <p>Are you sure you want to permanently delete this order?</p>
-                    <div class="modal-buttons">
-                        <button class="modal-cancel">No, Keep Order</button>
-                        <a href="?c=Orders&m=delete&id=<?= $item['id'] ?>" class="modal-confirm">Yes, Delete</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
