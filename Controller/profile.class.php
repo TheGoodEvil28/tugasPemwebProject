@@ -11,6 +11,7 @@ class Profile extends Controller
             'purchases' => count($historyModel->getPurchases()),
             'sales' => count($historyModel->getSales()),
             // 'donations' => count($historyModel->getDonations()),
+            // 'xp' => $accountModel->getXP()
         ];
     }
 
@@ -77,74 +78,33 @@ class Profile extends Controller
         header("Location:?c=profile&m=edit");
     }
 
-    public function updateOrder()
+    public function deleteProduct()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $orderId = $_POST['order_id'] ?? null;
+        $id = $_GET['id'] ?? 0;
+        $historyModel = $this->loadModel('History');
 
-            // Only allow updates for non-delivered orders
-            $currentOrder = $this->getOrderDetails($orderId);
-            if ($currentOrder && $currentOrder['status'] !== 'delivered') {
-                $updateData = [
-                    'name' => $_POST['name'] ?? '',
-                    'phone_number' => $_POST['phone_number'] ?? '',
-                    'address_search' => $_POST['address_search'] ?? '',
-                    'full_address' => $_POST['full_address'] ?? '',
-                    'additional_details' => $_POST['additional_details'] ?? ''
-                ];
-
-                $orderModel = $this->loadModel('Order');
-                if ($orderModel->updateOrder($orderId, $updateData)) {
-                    $_SESSION['success'] = "Order updated successfully!";
-                } else {
-                    $_SESSION['error'] = "Failed to update order";
-                }
-            } else {
-                $_SESSION['error'] = "Cannot update delivered orders";
-            }
+        if ($historyModel->deleteProduct($id)) {
+            $_SESSION['success'] = 'Product deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete product';
         }
-        header("Location: ?c=Profile&m=purchases");
+
+        header("Location: ?c=profile&m=sales");
+        exit;
     }
 
-    private function getOrderDetails($orderId)
+    public function deleteOrder()
     {
-        $orderModel = $this->loadModel('Order');
-        return $orderModel->getById($orderId);
-    }
+        $id = $_GET['id'] ?? 0;
+        $historyModel = $this->loadModel('History');
 
-    // In ProfileController.php
-    // In ProfileController.php
-    public function updateProduct()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $productId = $_POST['product_id'] ?? null;
-
-            // Only allow updates for products that are still on sale
-            $productModel = $this->loadModel('Product');
-            $currentProduct = $productModel->getById($productId);
-
-            if ($currentProduct) {
-                $updateData = [
-                    'title' => $_POST['title'] ?? '',
-                    'price' => $_POST['price'] ?? 0,
-                    'category' => $_POST['category'] ?? '',
-                    'brand' => $_POST['brand'] ?? '',
-                    'condition' => $_POST['condition'] ?? '',
-                    'color' => $_POST['color'] ?? '',
-                    'size' => $_POST['size'] ?? '',
-                    'fabric_type' => $_POST['fabric_type'] ?? '',
-                    'description' => $_POST['description'] ?? ''
-                ];
-
-                if ($productModel->update($productId, $updateData)) {
-                    $_SESSION['success'] = "Product updated successfully!";
-                } else {
-                    $_SESSION['error'] = "Failed to update product";
-                }
-            } else {
-                $_SESSION['error'] = "Product not found";
-            }
+        if ($historyModel->deleteOrder($id)) {
+            $_SESSION['success'] = 'Order deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete order';
         }
-        header("Location: ?c=Profile&m=sales");
+
+        header("Location: ?c=profile&m=purchases");
+        exit;
     }
 }

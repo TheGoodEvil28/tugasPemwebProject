@@ -1,75 +1,11 @@
 <?php
 class History extends Model
 {
-    // public function getDonations()
-    // {
-    //     $userId = $this->getActiveAccountId();
-    //     $stmt = $this->db->prepare("
-    //         SELECT 
-    //             d.id,
-    //             d.donation_date AS date,
-    //             i.price,
-    //             i.title,
-    //             i.image,
-    //             i.item_condition,
-    //             d.recipient_org,
-    //             d.status
-    //         FROM donations d
-    //         JOIN items i ON d.item_id = i.id
-    //         WHERE d.user_id = ?
-    //     ");
-    //     $stmt->bind_param("i", $userId);
-    //     $stmt->execute();
-    //     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    // }
-
-    // public function getSales()
-    // {
-    //     $userId = $this->getActiveAccountId();
-    //     $stmt = $this->db->prepare("
-    //         SELECT 
-    //             s.id,
-    //             s.sale_date AS date,
-    //             s.sale_price AS price,
-    //             i.title,
-    //             i.image,
-    //             i.item_condition,
-    //             s.status
-    //         FROM sales s
-    //         JOIN items i ON s.item_id = i.id
-    //         WHERE s.user_id = ?
-    //     ");
-    //     $stmt->bind_param("i", $userId);
-    //     $stmt->execute();
-    //     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    // }
-
-    // public function getPurchases()
-    // {
-    //     $userId = $this->getActiveAccountId();
-    //     $stmt = $this->db->prepare("
-    //         SELECT 
-    //             p.id,
-    //             p.purchase_date AS date,
-    //             p.purchase_price AS price,
-    //             i.title,
-    //             i.image,
-    //             i.item_condition,
-    //             p.status
-    //         FROM purchases p
-    //         JOIN items i ON p.item_id = i.id
-    //         WHERE p.user_id = ?
-    //     ");
-    //     $stmt->bind_param("i", $userId);
-    //     $stmt->execute();
-    //     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    // }
-
     public function getSales()
     {
         $userId = $this->getActiveAccountId();
         $stmt = $this->db->prepare("
-        SELECT 
+           SELECT 
             p.id,  
             COALESCE(o.created_at, p.created_at) AS date,
             p.price,
@@ -77,14 +13,8 @@ class History extends Model
             pi.image_data,
             pi.image_type,
             p.condition AS item_condition,
-            p.category,
-            p.brand,
-            p.color,
-            p.size,
-            p.fabric_type,
-            p.description, 
-            p.created_at AS product_created_at,
             COALESCE(o.status, 'on sale') AS status,
+            p.created_at AS product_created_at,
             CASE 
                 WHEN o.id IS NOT NULL THEN 'sold'
                 ELSE 'on sale'
@@ -133,21 +63,7 @@ class History extends Model
             pi.image_data,
             pi.image_type,
             p.condition AS item_condition,
-            o.status,
-            
-            /* Ensure address_search is included */
-            o.address_search,
-            o.name AS recipient_name,
-            o.phone_number,
-            o.full_address,
-            o.additional_details AS shipping_notes,
-            p.category,
-            p.brand,
-            p.color,
-            p.size,
-            p.fabric_type,
-            p.description AS full_description,
-            p.created_at AS product_listed_date
+            o.status
         FROM orders o
         JOIN products p ON o.product_id = p.id
         LEFT JOIN (
@@ -173,17 +89,37 @@ class History extends Model
             } else {
                 $purchase['image'] = null;
             }
-            // Preserve original keys
-            $purchase += [
-                'original_id' => $purchase['id'],
-                'original_date' => $purchase['date'],
-                'original_price' => $purchase['price'],
-                'original_title' => $purchase['title'],
-                'original_status' => $purchase['status'],
-            ];
             unset($purchase['image_data'], $purchase['image_type']);
         }
 
         return $purchases;
+    }
+
+
+
+
+
+
+    public function deleteProduct($id)
+    {
+        $userId = $this->getActiveAccountId();
+        
+        // First delete product images
+        $stmt = $this->db->prepare("DELETE FROM product_images WHERE product_id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        
+        // Then delete the product
+        $stmt = $this->db->prepare("DELETE FROM products WHERE id = ? AND user_id = ?");
+        $stmt->bind_param("ii", $id, $userId);
+        return $stmt->execute();
+    }
+
+    public function deleteOrder($id)
+    {
+        $userId = $this->getActiveAccountId();
+        $stmt = $this->db->prepare("DELETE FROM orders WHERE id = ? AND user_id = ?");
+        $stmt->bind_param("ii", $id, $userId);
+        return $stmt->execute();
     }
 }
