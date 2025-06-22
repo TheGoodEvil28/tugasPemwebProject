@@ -10,8 +10,8 @@ class Profile extends Controller
         return [
             'purchases' => count($historyModel->getPurchases()),
             'sales' => count($historyModel->getSales()),
-            'donations' => count($historyModel->getDonations()),
-            'xp' => $accountModel->getXP()
+            // 'donations' => count($historyModel->getDonations()),
+            // 'xp' => $accountModel->getXP()
         ];
     }
 
@@ -21,16 +21,16 @@ class Profile extends Controller
     }
 
     public function purchases()
-    {
-        $historyModel = $this->loadModel('History');
-        $data = [
-            'active_tab' => 'purchases',
-            'history_items' => $historyModel->getPurchases(),
-            'user' => $this->loadModel('Account')->getUserProfile(),
-            'stats' => $this->getProfileStats()
-        ];
-        $this->loadView('profile', $data);
-    }
+{
+    $historyModel = $this->loadModel('History');
+    $data = [
+        'active_tab' => 'purchases',
+        'history_items' => $historyModel->getPurchases(),
+        'user' => $this->loadModel('Account')->getUserProfile(),
+        'stats' => $this->getProfileStats()
+    ];
+    $this->loadView('profile', $data); // ✅ ini benar
+}
 
     public function sales()
     {
@@ -44,17 +44,6 @@ class Profile extends Controller
         $this->loadView('profile', $data);
     }
 
-    public function donation()
-    {
-        $model = $this->loadModel('History');
-        $data = [
-            'active_tab' => 'donation',
-            'history_items' => $model->getDonations(),
-            'user' => $this->loadModel('Account')->getUserProfile(),
-            'stats' => $this->getProfileStats()
-        ];
-        $this->loadView('profile', $data);
-    }
 
     public function edit()
     {
@@ -64,7 +53,6 @@ class Profile extends Controller
             'user' => $model->getUserProfile()
         ]);
     }
-
 
     public function update()
     {
@@ -88,5 +76,34 @@ class Profile extends Controller
         }
 
         header("Location:?c=profile&m=edit");
+    }
+
+     public function deleteProduct()
+    {
+        $id = $_GET['id'] ?? 0;
+        $historyModel = $this->loadModel('History');
+
+        if ($historyModel->deleteProduct($id)) {
+            $_SESSION['success'] = 'Product deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete product.';
+        }
+
+        header("Location:?c=profile&m=sales");
+        exit;
+    }
+    public function deleteOrder()
+    {
+        $id = $_GET['id'] ?? 0;
+        $historyModel = $this->loadModel('History');
+
+        if ($historyModel->deleteOrder($id)) {
+            $_SESSION['success'] = 'Order deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete order.';
+        }
+
+        header("Location:?c=profile&m=purchases");
+        exit;
     }
 }

@@ -42,8 +42,10 @@ class Route extends Controller {
     }
 
     public function profile() {
-    $this->loadView('profile'); // or however your app loads views
+    header("Location: ?c=Profile&m=purchases"); // ✅ arahkan ke controller Profile
+    exit;
 }
+
 
     
 // public function editProfile() {

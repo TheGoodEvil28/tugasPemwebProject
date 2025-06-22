@@ -13,7 +13,7 @@
     <link rel="icon" type="image/x-icon" href="public/assets/logoT.png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <!-- ^ local style -->
-    <link rel="stylesheet" href="view/profile/styles.css">
+    <link rel="stylesheet" href="views/profile/styles.css">
     <link rel="stylesheet" href="public/css/navbar.css" />
     <link rel="stylesheet" href="public/css/footer.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -35,27 +35,27 @@
 
             <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../views/index.php">
-                            <span class="mobile-text">HOME</span>
-                            <i class="fas fa-chevron-right mobile-arrow"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mobile-menu-item {{ request()->is('shopwomen') ? 'active' : '' }}" href="../views/shop.php">
-                            <span class="mobile-text">SHOP</span>
-                            <i class="fas fa-chevron-right mobile-arrow"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mobile-menu-item {{ request()->is('sell') ? 'active' : '' }}" href="../views/sell.php">
-                            <span class="mobile-text">SELL</span>
-                            <i class="fas fa-chevron-right mobile-arrow"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link mobile-menu-item {{ request()->is('homepage') ? 'active' : '' }}" href="../index.php">
+            <span class="mobile-text">HOME</span>
+            <i class="fas fa-chevron-right mobile-arrow"></i> 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mobile-menu-item {{ request()->is('shopwomen') ? 'active' : '' }}" href="../views/shop.html">
+            <span class="mobile-text">SHOP</span>
+            <i class="fas fa-chevron-right mobile-arrow"></i> 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mobile-menu-item {{ request()->is('sell') ? 'active' : '' }}" href="../views/sell.html">
+            <span class="mobile-text">SELL</span>
+            <i class="fas fa-chevron-right mobile-arrow"></i> 
+          </a>
+        </li>
+      </ul>
+    </div>
             <!-- User Icons (Right Side on Desktop, Top with Logo on Mobile) -->
             <div class="user-icons d-flex align-items-center">
                 <a class="nav-link" href="#">
@@ -95,15 +95,10 @@
                         <div class="stat-value"><?= $stats['sales'] ?></div>
                         <div class="stat-label">Items Sold</div>
                     </div>
-                    <div class="stat-item">
+                    <!-- <div class="stat-item">
                         <div class="stat-value"><?= $stats['donations'] ?></div>
                         <div class="stat-label">Donations</div>
-                    </div>
-                </div>
-
-                <div class="profile-xp">
-                    <i class="fas fa-star"></i>
-                    <?= number_format($user['xp_points'], 0, ',', '.') ?> XP Points
+                    </div> -->
                 </div>
 
                 <a href="?c=Profile&m=edit" class="edit-profile-btn">
@@ -116,7 +111,7 @@
         <div class="history-tabs">
             <a href="?c=Profile&m=purchases" class="history-tab <?= $active_tab === 'purchases' ? 'active' : '' ?>"><i class="fas fa-shopping-bag me-2"></i>Purchases</a>
             <a href="?c=Profile&m=sales" class="history-tab <?= $active_tab === 'sales' ? 'active' : '' ?>"><i class="fas fa-tag me-2"></i>Sales</a>
-            <a href="?c=Profile&m=donation" class="history-tab <?= $active_tab === 'donation' ? 'active' : '' ?>"><i class="fas fa-hands-helping me-2"></i>Donations</a>
+            <!-- <a href="?c=Profile&m=donation" class="history-tab <?= $active_tab === 'donation' ? 'active' : '' ?>"><i class="fas fa-hands-helping me-2"></i>Donations</a> -->
         </div>
 
         <!-- Content Section -->
@@ -125,9 +120,38 @@
                 <?php include 'purchases.php' ?>
             <?php elseif ($active_tab === 'sales'): ?>
                 <?php include 'sales.php' ?>
-            <?php else: ?>
-                <?php include 'donation.php' ?>
             <?php endif; ?>
+        </div>
+        <div id="global-modals">
+            <!-- Delete Order Modal -->
+            <div class="cancel-modal" id="deleteOrderModal">
+                <div class="modal-center-helper">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h3>Confirm Delete</h3>
+                        <p>Are you sure you want to permanently delete this order?</p>
+                        <div class="modal-buttons">
+                            <button class="modal-cancel">No, Keep Order</button>
+                            <a href="#" class="modal-confirm">Yes, Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Product Modal -->
+            <div class="cancel-modal" id="deleteProductModal">
+                <div class="modal-center-helper">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h3>Confirm Delete</h3>
+                        <p>Are you sure you want to permanently delete this product?</p>
+                        <div class="modal-buttons">
+                            <button class="modal-cancel">No, Keep Product</button>
+                            <a href="#" class="modal-confirm">Yes, Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -187,8 +211,51 @@
             <p class="mb-0 footer-text">© 2024 Thriftin Company. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="public/js/navbar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all modals as hidden
+            document.querySelectorAll('.cancel-modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+
+            // Modal handling
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modalId = this.getAttribute('data-modal-target');
+                    const itemId = this.getAttribute('data-item-id');
+                    const modal = document.getElementById(modalId);
+
+                    // Update confirmation link
+                    if (modalId === 'deleteOrderModal') {
+                        modal.querySelector('.modal-confirm').href = `?c=Profile&m=deleteOrder&id=${itemId}`;
+                    } else if (modalId === 'deleteProductModal') {
+                        modal.querySelector('.modal-confirm').href = `?c=Profile&m=deleteProduct&id=${itemId}`;
+                    }
+
+                    modal.style.display = 'flex';
+                });
+            });
+
+            // Close modals
+            document.querySelectorAll('.modal-close, .modal-cancel').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.closest('.cancel-modal').style.display = 'none';
+                });
+            });
+
+            // Close modal when clicking outside
+            document.querySelectorAll('.cancel-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

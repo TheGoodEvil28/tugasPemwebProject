@@ -1,67 +1,64 @@
 <?php
 class History extends Model
 {
-    public function getDonations()
-    {
-        $userId = $this->getActiveAccountId();
-        $stmt = $this->db->prepare("
-            SELECT 
-                d.id,
-                d.donation_date AS date,
-                i.price,
-                i.title,
-                i.image,
-                i.item_condition,
-                d.recipient_org,
-                d.status
-            FROM donations d
-            JOIN items i ON d.item_id = i.id
-            WHERE d.user_id = ?
-        ");
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    }
+    public function getPurchases()
+{
+    $userId = $this->getActiveAccountId();
+    $stmt = $this->db->prepare("
+        SELECT 
+            o.id,
+            o.created_at AS date,
+            p.price,
+            p.category AS title,
+            CONCAT('index.php?c=Route&m=serveImage&id=', p.id) AS image,
+            p.condition AS item_condition,
+            o.status
+        FROM orders o
+        JOIN products p ON o.product_id = p.id
+        WHERE o.user_id = :user_id
+    ");
+    $stmt->execute(['user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     public function getSales()
-    {
-        $userId = $this->getActiveAccountId();
-        $stmt = $this->db->prepare("
-            SELECT 
-                s.id,
-                s.sale_date AS date,
-                s.sale_price AS price,
-                i.title,
-                i.image,
-                i.item_condition,
-                s.status
-            FROM sales s
-            JOIN items i ON s.item_id = i.id
-            WHERE s.user_id = ?
-        ");
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    }
+{
+    $userId = $this->getActiveAccountId();
+    $stmt = $this->db->prepare("
+        SELECT 
+            o.id,
+            o.created_at AS date,
+            p.price,
+            p.category AS title,
+            CONCAT('index.php?c=Route&m=serveImage&id=', p.id) AS image,
+            p.condition AS item_condition,
+            o.status
+        FROM orders o
+        JOIN products p ON o.product_id = p.id
+        WHERE p.user = :user_id
+    ");
+    $stmt->execute(['user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-    public function getPurchases()
+    public function deleteProduct($productId)
+{
+    $this->db->prepare("DELETE FROM product_images WHERE product_id = ?")->execute([$productId]);
+    $stmt = $this->db->prepare("DELETE FROM products WHERE id = ?");
+    return $stmt->execute([$productId]);
+}
+
+    public function deleteOrder($orderId)
+{
+    $stmt = $this->db->prepare("DELETE FROM orders WHERE id = ?");
+    return $stmt->execute([$orderId]);
+}
+
+    public function getDonations()
     {
-        $userId = $this->getActiveAccountId();
-        $stmt = $this->db->prepare("
-            SELECT 
-                p.id,
-                p.purchase_date AS date,
-                p.purchase_price AS price,
-                i.title,
-                i.image,
-                i.item_condition,
-                p.status
-            FROM purchases p
-            JOIN items i ON p.item_id = i.id
-            WHERE p.user_id = ?
-        ");
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        // BELUM ADA TABEL donations — return kosong
+        return [];
     }
 }
+
