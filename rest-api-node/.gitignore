@@ -1,0 +1,47 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploaded files or temporary data (if any)
+uploads/
+temp/
+*.tmp
+
+# VS Code
+.vscode/
+
+# PHP
+*.log
+*.lock
+vendor/
+.env.php
+.idea/
+
+# Ignore compiled files
+*.class.php
+
+# Ignore build tools (optional)
+dist/
+build/
+.cache/
+coverage/
+
+# Database dumps
+*.sql
+*.sqlite
+*.db
+
+# Docker (optional)
+docker-compose.override.yml
